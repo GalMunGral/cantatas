@@ -50,7 +50,7 @@ window.onload = async () => {
     const sourceBuf = source.addSourceBuffer(
       'video/mp4; codecs="avc1.4D4028, mp4a.40.2"'
     );
-    const res = await fetch("log.txt");
+    const res = await fetch("video.mp4");
     const buf = await res.arrayBuffer();
     sourceBuf.appendBuffer(buf);
   };
@@ -104,18 +104,21 @@ layout: center
 ```bash
 openssl enc -aes-256-cbc -pass pass:"<password>" -in <input-file> -base64 -out <ouput-file>
 ```
-(AES-256-CBC 和 base64 编码是为了便于对接 CyptoJS 库)
 
 ![cbc](/assets/cbc.png)
+
+(AES-256-CBC 和 base64 编码只是为了便于对接 CyptoJS 库)
 
 ---
 layout: center
 ---
 # 可以解密
 
-1. 如果用 K 加密视频, 那么要如何秘密地获取 K? 用 K' 加密 K?
-2. 那么要如何秘密地获取 K'? 再用 K'' 加密 K'?
-3. 那么要如何秘密地获取 K''?
+- 如果用 $K$ 加密视频, 那么如何隐藏 $K$? 用 $K'$ 加密 $K$?
+- 如何隐藏 $K'$? 再用 $K''$ 加密 $K'$?
+- 那么如何隐藏 $K''$? 
+- ...
+- 非对称加密 (比如 RSA) 也不能解决隐藏密钥的问题
 
 ---
 layout: center
@@ -125,7 +128,7 @@ layout: center
 
 完全没有对方任何预先信息的条件下通过不安全信道创建起一个密钥
 
-- $p$ 是一个公开的很大的素数, $1 < g < p$
+- 双方已知 $g$、$p$, $p$ 是一个足够大(比如2048位)的素数, $1 < g < p$
 - A 生成一个随机数 $m$ 然后把 $g^m \bmod p$ 给 B
 - B 生成一个随机数 $n$ 然后把 $g^n \bmod p$ 给 A
 - 双方可以得到密钥
