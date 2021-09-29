@@ -149,9 +149,9 @@ layout: center
 
 ```js
 function DEVTOOL_TRAP() {
-  while (IS_SOMEONE_WATCH__in__G()) {}
+  while (IS_SOMEONE_WATCHING()) {}
 
-  function IS_SOMEONE_WATCH__in__G() {
+  function IS_SOMEONE_WATCHING() {
     const HUMAN_CANT_BE_THAT_FAST = 10;
     let t1 = performance.now();
     debugger;
