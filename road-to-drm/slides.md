@@ -107,7 +107,7 @@ openssl enc -aes-256-cbc -pass pass:"<password>" -in <input-file> -base64 -out <
 
 ![cbc](/assets/cbc.png)
 
-(AES-256-CBC 和 base64 编码只是为了便于对接 CyptoJS 库)
+(AES-256-CBC 和 base64 编码只是为了便于对接 CryptoJS 库)
 
 ---
 layout: center
