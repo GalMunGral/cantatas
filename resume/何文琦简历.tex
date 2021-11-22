@@ -1,104 +1,105 @@
-\documentclass[10 pt]{article}
+\documentclass[10pt]{article}
 \usepackage{xeCJK}
-\usepackage[margin=0.5in]{geometry}
+\usepackage[margin=4em]{geometry}
 \usepackage{titlesec}
 \usepackage{enumitem}
+\usepackage{blindtext}
 \usepackage[T1]{fontenc}
 
 \titleformat{\section}{}{\thesection}{0pt}{\vspace{0pt}}[{\titlerule[0.1pt]}]
-\setlist[itemize]{leftmargin=1.5em, topsep=0.5em, itemsep=0pt, label={-}}
+\setlist[itemize]{leftmargin=2em, topsep=0.5em, itemsep=0pt, label=$\lambda$}
 \setlength\parindent{0pt}
 \pagestyle{empty}
 
 \begin{document}
 
-\begin{center}
-\textbf{\huge 何文琦}\\
-\vspace{0.2em}
-\textbf{\texttt{hewenqi96@qq.com | 136-2602-2079 }}
-\end{center}
+{\bf\huge 何文琦} \hfill 136-2602-2079 | hewenqi96@qq.com
+
+\section*{工作经历}
+\textbf{前端工程师, 谷露软件 (Gllue Software), 上海} \hfill 2020/11 -- 2021/11
+\begin{itemize}
+\item 负责多个产品(含桌面web端和微信小程序) 多个主要模块的前端开发. 主要使用 TypeScript 和 React  (Taro) .
+\item 负责在小程序和桌面web端接入谷露一帐通用户系统/统一身份认证中心, 部分场景使用OAuth2.0.
+\item 参与前端基础建设: 负责开发(小程序用)轻量级表单引擎和图片生成服务, 参与维护公司自研 XML 编辑/渲染引擎.
+\item {\small Redux Saga, SWR, ECharts, Ant Design, Linaria, Sass/LESS, Tailwind CSS, Vite/webpack/Rollup/Parcel, GitLab, ArgoCD}
+\end{itemize}
+
+\vspace{0.5em}
+\textbf{前端工程师, Étude (\texttt{etudereader.com}), 亚特兰大} \hfill 2019/09 -- 2020/03
+\begin{itemize}
+\item 负责智能 PDF 阅读器 (Electron应用) 的前端开发, 实现了从原始文本解析目录信息、 划词高亮等功能.
+\end{itemize}
+
+\vspace{0.5em}
+\textbf{前端实习生, Georgia Institute of Technology, 亚特兰大} \hfill 2019/08 -- 2019/12
+\begin{itemize}
+\item 参与并主导了期中调查问卷系统的自定义表单功能的开发, 集成了学校 CAS 单点登录系统和 Canvas LMS API.
+\item 主要使用 MongoDB, ajv, TypeScript, Angular, Express,  Node.js, Puppeteer.
+\end{itemize}
+
+\vspace{0.5em}
+\textbf{前端实习生, PegasusCRM, 亚特兰大} \hfill 2018/01 -- 2018/04
+\begin{itemize}
+\item 主要使用 Laravel, jQuery, Sass/LESS, Vue.  开发了基于Puppeteer 的PDF 生成服务 (Node.js).
+\end{itemize}
+
 
 \section*{教育经历}
-\textbf{计算机科学理学学士 | 佐治亚理工学院 (Georgia Institute of Technology)} | GPA: 3.97/4.0 \hfill 2015/08 -- 2019/12
-
-\section*{工作/实习经历}
-\textbf{前端工程师 | 谷露软件 Gllue Software | 上海} \hfill 2020/11 -- present
+\textbf{计算机科学理学学士 (BSCS), Georgia Institute of Technology, 亚特兰大} \hfill 2015/08 -- 2019/12
 \begin{itemize}
-\item 负责协作平台人才库模块的前端开发, 主要使用 TypeScript, React, SWR, Tailwind CSS, Vite.
-\item 负责谷露星选小程序多个模块的前端开发. 主要使用 TypeScript, Taro (React), dva (Redux Saga), Linaria, Sass, ECharts.
-\item 参与小程序前端基础建设, 包括表单引擎、图片生成服务
-\item 参与了 ATS 和其中 XML 渲染引擎的维护和开发.
-\end{itemize}
-
-\textbf{Electron 开发工程师 (兼职) | Étude (\texttt{etudereader.com}) | 亚特兰大} \hfill 2019/09 -- 2019/12
-\begin{itemize}
-\item 使用正则表达式从目录页文本中提取标题和页码, 实现了自动生成章节跳转链接的功能.
-\end{itemize}
-
-\textbf{前端开发实习生 | PegasusCRM | 亚特兰大} \hfill 2018/01 -- 2018/04
-\begin{itemize}
-\item 主要使用 Laravel (PHP), Vue.js, jQuery 和 Sass.
+\item  综合 GPA: 3.97/4.0, 专业 GPA: 4.0/4.0. 辅修物理学 (论文: \texttt{https://galmungral.github.io})
 \end{itemize} 
 
-\section*{个人项目 \texttt{\large //github.com/GalMunGral}}
+\section*{\texttt{\large github.com/GalMunGral}}
 
-
-\textbf{\texttt{/hanbun-lang:} 面向对象的、基于栈的虚拟机与文言汇编 [TypeScript]} \hfill 2021/05
+\textbf{\texttt{/telescope}:  (C, Python) 基于 SOCKS 协议的分离式代理 }   \hfill 2021/04
 \begin{itemize}
-\item 指令集设计类似 JVM. 用 parsec 式的解析器组合子设计/实现了文言语法. 基于浏览器实现了简易的运行时.
+\item 个人日常使用的科学上网工具, 采用Shadowsocks式split proxy架构.
 \end{itemize}
 
-\textbf{\texttt{/synk}:  融合 Elm 架构与组件化的前端框架  [TypeScript]} \hfill 2021/04
-\begin{itemize} 
-\item 主要受 Elm 与 Redux-Saga 启发, 严格隔离副作用. 渲染通过 JSX 和 incremental-dom 实现. 
-\end{itemize}
-
-\textbf{\texttt{/wormhole}:  自定义类 SOCKS 协议代理服务 [Python]} \hfill 2021/04
+\vspace{0.5em}
+\textbf{\texttt{/hanbun-lang:} (TypeScript) 为前端设计的文言汇编语言和虚拟机} \hfill 2021/05
 \begin{itemize}
-\item 日常使用的代理工具, 采用 split proxy 架构 (同 shadowsocks), 中间采用自定义协议.
+\item 设计了面向对象的栈式虚拟机和文言形式的汇编. 解释器采用纯函数式 (parser combinator, freer monad).
 \end{itemize}
 
-
-\textbf{\texttt{./react-split-renderer}  基于 Worker 共享状态的 的 React 渲染器 [TypeScript]} \hfill 2021/05 
+\vspace{0.5em}
+\textbf{\texttt{/replay:} (TypeScript/JavaScript)  前端框架和构建工具(无第三方依赖) } \hfill 2020/05 -- 2020/09
 \begin{itemize}
-\item  在 worker 内维护一层数据结构作为主线程 DOM 的镜像, 通过线程间的消息机制代理 React Reconciler 的操作.
-\item 实现了在后台线程运行前端应用, 理论上可以减少重复加载执行初始化代码 (比如同时打开多个 tab 时) 的消耗.
+\item 实现了基于 JS 语法的 DSL (使用 Babel 插件), 增量 DOM (原地 diff), 非阻塞渲染, hydration, Vue式依赖收集.
+\item 实现了Vite 式本地ESM模式 (支持构建缓存和自动刷新) 和webpack式打包模式 (支持代码分割和动态导入).
 \end{itemize}
 
-\textbf{\texttt{./\{atomic-css, unused-files, coupling-analyzer\}-webpack-plugin:} } \hfill 2020/04
+\vspace{0.5em}
+\textbf{\texttt{/react-teletype}  (TypeScript) 多标签页共享的 React 渲染器} \hfill 2021/05 
 \begin{itemize}
-\item 一些 webpack 插件, 实现了包括按需生成原子化CSS、检测无用代码文件、分析模块间耦合等功能.
+\item  在 shared worker 内通过消息操作主线程 DOM (节省多个标签页重复加载相同代码并初始化的时间).
 \end{itemize}
 
-\textbf{\texttt{./replay:} 前端框架与构建工具（参考 React/Vue 与 Vite/webpack）} \hfill 2020/05 -- 2020/09
+\vspace{0.5em}
+\textbf{\texttt{/colosseum}:  (TypeScript) HTML 5 加密流媒体播放器}   \hfill 2021/10
 \begin{itemize}
-\item 编写 Babel 插件实现了基于 JS 自身语法的 DSL, 用 generator 实现了可中断/取消的非阻塞渲染 (diff), 支持组件懒加载.
-\item 设计并实现了增量DOM模式, 将 DSL 直接编译为 (原地) diff 指令, 减少虚拟 DOM 节点的生成和销毁.
-\item 实现了 hydration、(依赖收集式) 响应式机制、状态管理、前端路由、CSS-in-JS, 并编写了仿 Gmail 的单页应用作为验证.
-\item 基于 Babel 和 PostCSS 实现了基于闭包的打包模式和 ESM + HTTP/2 模式 (默认开启构建缓存, 自动刷新).
-\item 实现了打包模式的代码分割 (同步/异步/公用/第三方模块) 和模块动态导入机制.
+\item 基于 Media Source API、 DASH 协议和 CryptoJS 实现的视频播放器, 可防止用户下载资源.
 \end{itemize}
 
-\textbf{\texttt{../MarcusWilder/open-evaluation:} 期中调查问卷系统 (设计课程项目)} \hfill 2019/08 -- 2019/12
+
+\vspace{0.5em}
+\textbf{\texttt{/layout-sandbox:} (TypeScript) WYSIWYG 拖拽式布局编排工具} \hfill 2021/11
+
+\vspace{0.5em}
+\textbf{\texttt{/synk}:  (TypeScript) 严格隔离副作用 (禁止异步代码) 的前端框架} \hfill 2021/04
+
+\vspace{0.5em}
+\textbf{\texttt{/web-repl:} (JavaScript) 基于 Socket.IO 的网页端 Python REPL (可用作聊天室)}  \hfill 2018/05 
+
+
+\vspace{1em}
+更多代码见: 
 \begin{itemize}
-\item 参与 Angular 前端开发, 主要实现了将 JSON 格式的问卷模板和用户填写的数据动态渲染成表单的功能.
-\item 负责 Express/Node.js 后端开发, 集成了学校 CAS 单点登录系统, 并通过 Canvas LMS API 拉取学生选课数据.
-\item 利用 Puppeteer 模拟用户登录并截取 session cookie 作为替代 OAuth 2.0 临时获取 API 访问权限的方案.
+\item \texttt{/preludes} \textit{形式语言、网络协议、前端框架相关的探索和概念验证}.
+\item \texttt{/etudes} \textit{简单的应用开发, 包括 web全栈、移动端\textup(原生\textup) 和桌面端 \textup(Electron\textup)}.
+\item \texttt{/bagatelles} \textit{零碎代码, 包括简单的 webpack 插件 \textup(按需生成原子化CSS、检测无用文件、分析模块间耦合等功能\textup)}.
 \end{itemize}
-
-\textbf{\texttt{./web-repl:} 在线 Python REPL 聊天室}  \hfill 2018/05 
-\begin{itemize}
-\item 开发了基于动态创建 REPL 子进程的简易聊天室, 可协作运行代码. 主要使用 Node.js, Socket.IO, WebRTC, React
-\end{itemize}
-
-\textbf{\texttt{./marta-\{react,vue\}:} 地铁乘客信息管理系统 (SQL课程项目) } \hfill 2017/09 -- 2017/11
-\begin{itemize}
-\item 主要实现了记录行程, 管理账户余额, 查看历史记录和车站人流等功能.
-\item 使用了 React/Redux/React Router, Vue/Vuex/Vue Router, Bulma  CSS, MySQL, Sequelize, Express, jsonwebtoken.
-\item 为了将多个应用部署到同一个 Heroku 项目, 用 Node.js 实现了简易的反向代理 (通过 cookie 选择上游端口).
-\end{itemize}
-
-更多: \texttt{/lispy-javascript}, \texttt{/dom-pipes}, \texttt{/declarative-dom}, \texttt{/js-wasm-compiler},\texttt{/app-multiplexer}, \texttt{/bagatelles} (随想小品集)
 
 \end{document}
 
