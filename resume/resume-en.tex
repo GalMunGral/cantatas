@@ -1,87 +1,97 @@
-\documentclass[12pt]{article}
-\usepackage[margin=0.5in]{geometry}
-\usepackage[T1]{fontenc}
+\documentclass[9pt]{article}
+\usepackage[margin=4em]{geometry}
 \usepackage{titlesec}
 \usepackage{enumitem}
+\usepackage{blindtext}
+\usepackage[T1]{fontenc}
 
-\titleformat{\section}{}{\thesection}{0pt}{\vspace{-0.5em}}[{\titlerule[0.2pt]\vspace{-0.5em}}]
-\setlist[itemize]{leftmargin=1em, topsep=0.4em, noitemsep, label={-}}
+\titleformat{\section}{}{\thesection}{0pt}{\vspace{0pt}}[{\titlerule[0.1pt]}]
+\setlist[itemize]{leftmargin=2em, topsep=0.5em, itemsep=0pt, label=$\lambda$}
 \setlength\parindent{0pt}
 \pagestyle{empty}
 
 \begin{document}
 
-\parbox{0.25\textwidth}{\hfill}
-\parbox{0.5\textwidth}{\centering\huge\bfseries Wenqi He}
-\parbox{0.25\textwidth}{\texttt{github.com/galmungral\\hewenqi96@gmail.com\\+1(470)343-5207}}
+{\bf\huge Wenqi He} \hfill (+1)470-343-5207 | hewenqi96@gmail.com
 
-\section*{EDUCATION}
-\textbf{B.S. Computer Science, Georgia Institute of Technology} (GPA: 3.97/4.0) \hfill 2015/08 - 2019/12
-
-\vspace{-0.5em}
-\section*{EXPERIENCE}
-\textbf{JavaScript Engineer, Etude, Atlanta} \hfill 2019/09 - 2019/12
+\section*{Experience}
+\textbf{Front-end Engineer, Gllue Software, Shanghai} \hfill 2020/11 -- 2021/11
 \begin{itemize}
-\item Implemented non-contiguous text highlighting and table of contents parsing for the PDF reader.
+\item Built main features of multiple products with TypeScript and React (and Taro for WeChat Mini Programs).
+\item Responsible for the front-end integration of the company's identity service, used OAuth 2.0 in certain scenarios.
+\item Participated in the maintenance of the XML editing/rendering engine (part of the company's front-end framework).
+\item Responsible for developing a light-weight form engine and a Node.js image generation service.
+\item {\small Used Redux Saga, SWR, ECharts, Linaria, Sass/LESS, Tailwind CSS, Vite/webpack/Rollup/Parcel, GitLab, ArgoCD}
 \end{itemize}
 
-\textbf{Front-end Developer Intern, PegasusCRM, Atlanta} \hfill 2018/01 - 2018/04
+\vspace{0.5em}
+\textbf{Front-end (Electron) Engineer, Étude (\texttt{etudereader.com}), Atlanta} \hfill 2019/09 -- 2020/03
 \begin{itemize}
-\item Implemented a new feature that allows merchants to group customers via drag-and-drop.
-\item Rewrote the core features of DataTables jQuery plugin in Vue.js to allow for future extensions.
-\item Implemented UI designs in Laravel Blade templates and SCSS/CSS. 
-\item Used Jira and Confluence.
+\item Responsible for features such as parsing table of contents from raw text, persistent word highlighting, etc.
 \end{itemize}
 
-\section*{PROJECTS}
-
-\textbf{Koala} (front-end JavaScript framework)  \hfill 2020/05
+\vspace{0.5em}
+\textbf{Part-time Developer, Georgia Institute of Technology, Atlanta} \hfill 2019/08 -- 2019/12
 \begin{itemize}
-\item Created a framework inspired by React, Vue, MobX and styled-components, with dependency tracking, batched updates, non-blocking rendering, component lazy-loading and dynamic scopes (contexts). 
-\item Wrote a Babel plugin to implement a JS-based DSL in the form of nested function calls.
-\item Replicated Gmail UI using the framework, with client-side routing and Redux-like state management.
+\item Lead the development of the mid-term survey's form builder feature. Integrated the school's CAS login service.
+\item Mainly used MongoDB, ajv, TypeScript, Angular, Express, Node.js, Puppeteer.
 \end{itemize}
 
-\textbf{JavaScript-to-WebAssembly Compiler} \hfill 2020/04
+\vspace{0.5em}
+\textbf{Front-end Engineer Intern, PegasusCRM, Atlanta} \hfill 2018/01 -- 2018/04
 \begin{itemize}
-\item Developed a compiler that outputs WebAssembly (text format) for a small subset of JavaScript.
-\item Implemented a shift-reduce parser based on the ESTree spec as an alternative to Babel parser.
+\item Mainly used Laravel, jQuery, Sass/LESS, Vue.  Developed a PDF-generation service based on Puppeteer.
 \end{itemize}
 
-\textbf{MARTA Public Transport Management System} \hfill 2017/09 - 2017/11
+
+\section*{Education}
+\textbf{B.S. Computer Science, Georgia Institute of Technology, Atlanta} \hfill 2015/08 -- 2019/12
 \begin{itemize}
-\item Developed a web app that allows users to manage station info, card balances, travel histories, etc.
-\item Implemented two frontends using React and Vue. Also used MySQL, Express, JWT and Bulma.
+\item  Cumulative GPA: 3.97/4.0, Major GPA: 4.0/4.0. Minor in Physics (\texttt{https://galmungral.github.io})
+\end{itemize} 
+
+\section*{\texttt{\large github.com/GalMunGral}}
+
+\textbf{\texttt{/telescope}:  (C, Python) A SOCKS-based Split Proxy }   \hfill 2021/11, 2021/04
+\begin{itemize}
+\item A minimalistic anti-censorship tool for bypassing GFW in China, inspired by Shadowsocks.
 \end{itemize}
 
-\textbf{\bfseries Georgia Tech Midterm Survey System} \hfill 2019/09 - 2019/12
+\vspace{0.5em}
+\textbf{\texttt{/hanbun-lang:} (TypeScript) An Esoteric High-Level Assembly for UI Programming} \hfill 2021/05
 \begin{itemize}
-\item Developed a web app for the Office of Academic Effectiveness to collect  student feedback.
-\item Used Angular to render survey forms from JSON-encoded survey templates and response data.
-\item Integrated Georgia Tech Login Service and Canvas LMS API to determine student enrollment status.
-\item Also used MongoDB, Express, Ajv, Puppeteer, Salesforce Lightning Design System and D3.js.
+\item Designed an object-oriented, stack-based VM and its high-level assembly in the form of Classical Chinese.
+\item Implemented the interpreter in a functional style (parser combinator, freer monad, etc).
 \end{itemize}
 
-\textbf{Online Python REPL Chat Room}  \hfill 2018/05
+\vspace{0.5em}
+\textbf{\texttt{/replay:} (TypeScript/JavaScript) Home-made Front-end Framework and Build Tool} \hfill 2020/05 -- 2020/09
 \begin{itemize}
-\item Developed a chat room web app in Node.js based on dynamically spawned Python REPL instances.
-\item Used Socket.IO to broadcast messages and provide the signaling service for WebRTC video calls.
+\item Implemented a DSL (with Babel), in-place diffing, non-blocking rendering, hydration and dependency tracking.
+\item Implemented ESM mode (with caching and live-reload) and bundling (with code-splitting and dynamic imports).
 \end{itemize}
 
-\textbf{Mini Visual Studio Code}  \hfill 2019/05
+\vspace{0.5em}
+\textbf{\texttt{/react-teletype}  (TypeScript) React Renderer Shared across Tabs} \hfill 2021/05 
 \begin{itemize}
-\item Developed a simple file explorer and text editor using Electron, React and styled-components.
+\item  Manipulates DOM from a shared worker through messages to avoid repeated execution of initialization code.
 \end{itemize}
 
-\textbf{Server Port Multiplexer} (proof of concept) \hfill 2019/07
+\vspace{0.5em}
+\textbf{\texttt{/colosseum}:  (TypeScript) A HTML5 Encrypted Streaming Media Player}   \hfill 2021/10
 \begin{itemize}
-\item Implemented a mechanism to deploy multiple applications on a single port by translating between TCP port numbers and URL path prefixes using service workers and a reverse proxy.
+\item Protects the video from being downloaded. Built on the Media Source API, DASH protocol and CryptoJS.
 \end{itemize}
 
-\textbf{Sitting Time Tracker} (proof of concept) \hfill 2019/01
-\begin{itemize}
-\item Utilized iOS Core Motion and Android sensor framework to detect standing-up/sitting-down motions.
-\item Created calendar heat maps using D3.js and SVG to visualize daily sitting time.
-\end{itemize}
+
+\vspace{0.5em}
+\textbf{\texttt{/layout-sandbox:} (TypeScript) WYSIWYG Drag-and-Drop Layout Builder} \hfill 2021/11
+
+\vspace{0.5em}
+\textbf{\texttt{/synk}:  (TypeScript) A Front-end Framework That Disallows Asynchrony} \hfill 2021/04
+
+\vspace{0.5em}
+\textbf{\texttt{/web-repl:} (JavaScript) Web-based Python REPL (and Chat Room)}  \hfill 2018/05 
 
 \end{document}
+
