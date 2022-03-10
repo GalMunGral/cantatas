@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<style>
+  html {
+    user-select: none;
+    font-family: monospace;
+    font-size: 16px;
+    font-weight: 600;
+  }
+</style>
+<script>
+  window["写出来"] = true;
+  const code = [];
+  window.onmessage = (e) => {
+    console.log(e);
+    if (typeof e.data == "string") {
+      if (window["写出来"]) {
+        if (!code.length) document.body.innerHTML = "";
+        document.body.append(e.data);
+        document.body.append(document.createElement("br"));
+      }
+      code.push(e.data);
+    }
+  };
+  window.onclick = () => {
+    if (window["写出来"]) {
+      document.body.innerHTML = "";
+    }
+    try {
+      eval(code.join("\n"));
+    } catch (e) {
+      if (window["写出来"]) {
+        document.body.append(e);
+        document.body.append(document.createElement("br"));
+      }
+    } finally {
+      code.length = 0;
+    }
+  };
+</script>

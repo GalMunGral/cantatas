@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<style>
+  html {
+    user-select: none;
+    font-weight: 600;
+  }
+  #split-view {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+  }
+  #main {
+    flex: 0 0 600px;
+    padding: 20px;
+    overflow: scroll;
+  }
+  #sandbox {
+    flex: 1;
+  }
+  iframe {
+    display: block;
+    margin: 5px 0;
+    border: none;
+    box-shadow: 0 0 10px 0px gray;
+  }
+  .syntax {
+    font-family: monospace;
+    font-weight: 800;
+    margin: 20px 0;
+    transition: 0.5s all;
+    font-size: 16px;
+  }
+  .group {
+    padding: 1px;
+    margin: 1px;
+    display: inline-block;
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: white;
+    transition: 0.5s all;
+  }
+  .syntax:hover {
+    transform: translate(0, -20px);
+  }
+  .syntax:hover .group {
+    background-color: rgba(0, 0, 0, 0.1);
+    transform: translate(0, 10px);
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  .button {
+    font-weight: 800;
+  }
+</style>
+
+<div id="split-view">
+  <div id="main">
+    <p>嘿! 看见右边这栩栩如生的白纸了吗?</p>
+    <p>米开朗基罗在世的话, 大概会用凿子砸它:</p>
+    <code-block>"你怎么不说话!"</code-block>
+    <p>点击「告诉它」, 然后去右边拍拍它.</p>
+    <code-block>我想让你说话</code-block>
+    <h3><i>纸:「你所指(refer)为何, 该如何定义(define)?」</i></h3>
+    <p>冷静一下当我们说话的时候, 我们在做什么?</p>
+    <div class="syntax">
+      <span class="group"
+        ><span class="group">我</span
+        ><span class="group"
+          ><span class="group">想</span
+          ><span class="group"
+            ><span class="group">让</span><span class="group">你</span
+            ><span class="group">说话</span></span
+          ></span
+        ></span
+      >
+    </div>
+    <p>是的, 我们把想法装进俄罗斯套娃, 再让对方拆开.</p>
+    <p>为了让我们这位安静的朋友开口, 我们得换一种套法.</p>
+    <div class="syntax">
+      <span class="group"
+        ><span class="group">我</span><span class="punc">.</span
+        ><span class="group"
+          ><span class="group">想</span><span class="punc">(</span
+          ><span class="group"
+            ><span class="punc">(</span><span class="punc">)</span></span
+          >
+          <span class="punc">=></span>
+          <span class="group"
+            ><span class="group">让</span
+            ><span class="group"
+              ><span class="punc">(</span><span class="group">你</span
+              ><span class="punc">,</span> <span class="group">说话</span
+              ><span class="punc">)</span></span
+            ></span
+          ><span class="punc">)</span>
+        </span>
+      </span>
+    </div>
+    <code-block>我.想(() => 让(你, 说话));</code-block>
+    <h3><i>『你是谁?』</i></h3>
+    <p>这是一个哲学问题呢!</p>
+    <p>某种意义上说, 我是属性的集合</p>
+    <div class="syntax">
+      <span class="group">
+        <span class="punc">const</span>
+        <span class="group">我</span>
+        <span class="punc">=</span>
+        <span class="group">
+          <span class="punc">{</span>
+          <span class="group"
+            ><span class="group">物种</span><span class="punc">:</span
+            ><span class="group">"人类"</span></span
+          ><span class="punc">,</span>
+          <span class="group"
+            ><span class="group">年龄</span><span class="punc">:</span
+            ><span class="group">25</span></span
+          >
+          <span class="punc">}</span>
+        </span>
+      </span>
+    </div>
+    <p>抛开所有的属性, 我和万物 (object) 并无二致 —— 「<code>{}</code>」</p>
+    <code-block>const 我 = {};</code-block>
+    <p>我是人, 我想让你说话</p>
+    <h3>
+      <i
+        >『你如何进行(<a
+          style="color: black"
+          href="https://en.wiktionary.org/wiki/functio"
+          >functio</a
+        >)思想?』</i
+      >
+    </h3>
+    <p>好问题! 我们要如何定义「<code>想(事情)</code>」这个动作呢?</p>
+    <p>
+      首先「想」是一个动词, 在纸的语言里, 动词长这样:「<code
+        >(...) => {...}</code
+      >」
+    </p>
+    <p>假设我们想要</p>
+    <div class="syntax">
+      <span class="group"
+        ><span class="group"
+          ><span class="group">用</span
+          ><span class="group"
+            ><span class="group">铅笔</span><span class="group">和</span
+            ><span class="group">颜料</span></span
+          ></span
+        ><span class="group">画</span
+        ><span class="group"
+          ><span class="group">一幅</span><span class="group">水彩</span></span
+        ></span
+      >
+    </div>
+    <p>用纸的话说:</p>
+    <div class="syntax">
+      <span class="group"
+        ><span class="group">画</span
+        ><span class="group"
+          >(<span class="group">水彩</span>, <span class="group">铅笔</span>,
+          <span class="group">颜料</span>)</span
+        ></span
+      >
+    </div>
+
+    <p>
+      我们可以先「<code>勾线(水彩, 铅笔)</code>」再「<code
+        >上色(水彩, 颜料)</code
+      >」
+    </p>
+
+    <p>当我们说「<code>画(x, y, z);</code>」的时候</p>
+    <p>指的就是「<code>勾线(x, y); 上色(x, z);</code>」这个过程</p>
+    <div class="syntax">
+      <span class="group"
+        ><span class="punc">const</span> <span class="group">画</span> =
+        <span class="group"
+          ><span class="group"
+            >(<span class="group">x</span>,<span class="group">y</span>,<span
+              class="group"
+              >z</span
+            >)</span
+          >
+          <span class="punc">=></span>
+          <span class="group"
+            ><span class="punc">{</span>
+            <span class="group"
+              ><span class="group">勾线</span>(<span class="group">x</span
+              >,<span class="group">y</span>);</span
+            >
+            <span class="group"
+              ><span class="group">上色</span>(<span class="group">x</span
+              >,<span class="group">z</span>);<span class="punc"></span>
+            </span>
+            };</span
+          ></span
+        ></span
+      >
+    </div>
+    <p>或许我们可以这样「<code>想</code>」:</p>
+    <code-block>const 我 = { 想: (f) => { f(); } };</code-block>
+    <code-block>我.想(print)</code-block>
+    是的,「<code>我.想(print)</code>」就是「<code>print()</code>」,
+    这就是心想事成吧!
+    <code-block>const 我 = { 想: (f) => { f(); } };</code-block>
+    <code-block>const 让 = (x, f) => { f(x) }</code-block>
+    <code-block>const 你 = { 名字: "Paper" };</code-block>
+    <code-block>const 说话 = (x) => { alert(x.名字); };</code-block>
+    <code-block>我.想(() => 让(你, 说话));</code-block>
+    <p>怎么理解呢? 我们的朋友会一步一步改写(rewrite)这个句子</p>
+
+    <p>
+      <li><code>我.想(() => 让(你, 说话));</code></li>
+      <li><code>const x = () => 让(你, 说话); 我.想(x);</code></li>
+      <li><code>x()</code></li>
+      <li><code>让(你, 说话)</code></li>
+      <li><code>说话(你)</code></li>
+      <li><code>alert(你.名字)</code></li>
+      <li><code>alert("Paper")</code></li>
+    </p>
+
+    <p>右边其实只是一摞纸当中我们看得见的一张.</p>
+    <p>我们的朋友听见「<code>const 你 = { 名字: "Paper" };</code>」的时候</p>
+    <p>会把「<code>"paper"</code>」写到我们看不见的一张纸上</p>
+    <p>一个标注着<code>「"你"」</code>和<code>「"名字"」</code>的角落</p>
+    <p>「<code>=</code>」在它的语言里是「写」的意思</p>
+    <p>
+      它看到的这句话其实相当于「<code
+        >写到看不见的地方("你", "名字", "Paper")</code
+      >」
+    </p>
+    <p>
+      之后看到「<code>alert(你.名字)</code>」的时候, 它又会找到这张纸,
+      顺着标注去把它读出来.
+    </p>
+    <p>我们的朋友就是这样一丝不苟地记录和查阅, 是按照我们的吩咐操作的.</p>
+    <p>所以为什么会采用书面交流这么客套的形式呢?</p>
+    <p>
+      是因为我在标着「<code>"window"</code>」「<code>"写出来"</code>」的角落里写了「<code>true</code>」的字样.
+    </p>
+    <p>我告诉它说:</p>
+    <div class="syntax">
+      <span class="group"
+        >if
+        <span class="group"
+          >(<span class="group"
+            ><span class="group">window</span>.<span class="group"
+              >写出来</span
+            ></span
+          >)</span
+        >
+        <span class="group"
+          >{<span class="group"
+            ><span class="group"
+              ><span class="group">写</span><span class="group">()</span></span
+            >;</span
+          >
+          }</span
+        >
+        else<span class="group"
+          >{
+          <span class="group"
+            ><span class="group"
+              ><span class="group">不写</span
+              ><span class="group">()</span></span
+            >;</span
+          >
+          }</span
+        ></span
+      >
+    </div>
+    <p>—— 如果是「<code>true</code>」就要写出来让我也看见, 反之则不用</p>
+    <p>现在我们要怎么告诉它我们想说悄悄话呢? 简单! 记在纸上!</p>
+    <code-block>window.写出来 = false</code-block>
+    <p>
+      它会把原本写在那里的「<code>true</code>」擦掉,
+      再写上一个「<code>false</code>」
+    </p>
+    <p>好了, 现在这整张纸都可以供我们使用了, 试试:</p>
+    <code-block>window.el = document.createElement('div');</code-block>
+    <code-block>el.textContent = "你好世界";</code-block>
+    <code-block>el.style.position = "fixed";</code-block>
+    <code-block>el.style.left = '100px';</code-block>
+    <code-block>el.style.top = '100px';</code-block>
+    <code-block>el.style.padding = '20px';</code-block>
+    <code-block>el.style.background = "black";</code-block>
+    <code-block>el.style.color = "white";</code-block>
+    <code-block>window.color = (c) => el.style.color = c;</code-block>
+    <code-block
+      >window.red = () => { color("red"); el.onclick = blue; }</code-block
+    >
+    <code-block
+      >window.blue = () => { color("blue"); el.onclick = green; }</code-block
+    >
+    <code-block
+      >window.green = () => { color("green"); el.onclick = red; }</code-block
+    >
+    <code-block>el.onclick = red;</code-block>
+    <code-block>document.body.append(el);</code-block>
+  </div>
+
+  <iframe id="sandbox" src="./sandbox"></iframe>
+
+  <script>
+    sandbox.contentWindow.postMessage({
+      what: "si",
+      this: "ha",
+    });
+
+    customElements.define(
+      "code-block",
+      class CodeBlock extends HTMLElement {
+        constructor() {
+          super();
+          this.innerHTML = `
+          <style>
+            #box {
+              margin: 10px 0;
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              font-size: 12px;
+            }
+            #code {
+              font-weight: 600;
+              outline: none;
+              flex: 1;
+              font-family: monospace;
+              line-height: 40px;
+              border: none;
+              background: lightgray;
+              padding: 0 10px;
+              height: 40px;
+              resize: none;
+              display: block;
+              width: 80%;
+              white-space: nowrap;
+            }
+            #btn {
+              flex: none;
+              cursor: pointer;
+              font-family: monospace;
+              font-weight: bold;
+              line-height: 40px;
+              height: 40px;
+              width: 80px;
+              text-align: center;
+              background: green;
+              color: white;
+              user-select: none;
+            }
+          </style>
+          <div id="box" class="button">
+            <div id="btn">告诉它</div>
+            <textarea id="code">${this.textContent}</textarea>
+          </div>
+        `;
+          const code = this.querySelector("#code");
+          const button = this.querySelector("#btn");
+          button.onmousedown = () => (button.style.background = "darkgreen");
+          button.onmouseup = () => (button.style.background = "green");
+          button.onclick = () => {
+            document
+              .querySelector("iframe")
+              .contentWindow.postMessage(code.value);
+          };
+        }
+      }
+    );
+  </script>
+</div>
