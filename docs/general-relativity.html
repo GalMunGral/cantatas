@@ -1,14 +1,23 @@
 <html>
   <head>
-    <link href="https://fonts.googleapis.com/css?family=IM+Fell+English" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Homemade+Apple" rel="stylesheet">
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=IM+Fell+English"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Homemade+Apple"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"
+      async
+    ></script>
     <style>
       ::-webkit-scrollbar {
         display: none;
       }
       body {
-        font-family: 'IM Fell English', serif;
+        font-family: "IM Fell English", serif;
         font-size: 14pt;
         padding: 20px 20%;
         word-wrap: break-word;
@@ -16,13 +25,16 @@
         user-select: none;
         padding-bottom: 100px;
       }
-      h1, h2, h3, h4 {
+      h1,
+      h2,
+      h3,
+      h4 {
         font-variant: small-caps;
       }
       h1 {
         margin-top: 100px;
       }
-      h4  {
+      h4 {
         font-style: italic;
       }
       h1 {
@@ -30,7 +42,7 @@
       }
       .quote {
         margin: 20px 30px;
-        font-family: 'Homemade Apple', cursive;
+        font-family: "Homemade Apple", cursive;
       }
       .author {
         font-style: italic;
@@ -49,7 +61,7 @@
         border: solid lightgray 1px;
       }
       .clickable {
-        cursor: pointer
+        cursor: pointer;
       }
       .clickable:hover {
         text-decoration: underline;
@@ -60,191 +72,361 @@
     </style>
   </head>
   <body>
-      <h1>PHYS-7125 Gravity Term Paper<br>
-        Overview of Einstein-Cartan Theory of Gravitation</h1>
-        <p class="author">Wenqi He, &nbsp April 2019</p>
-      <h2>1. Mathematical Considerations</h2>
-      <h3>1.1. Cartan's torsion tensor</h3>
-        On a manifold with connection coefficients \(\Gamma^k_{ij}\), Cartan's torsion tensor is defined as
-        \[ S_{ij}{}^k := \Gamma^k_{[ij]} = \frac{1}{2}(\Gamma^k_{ij} - \Gamma^k_{ji})\]
-        which measures the extent to which infinitesimal parallelograms fail to close. A vanishing torsion, as the fundamental theorem of Riemannian geometry states<sup>[1]</sup>, leads to a unique metric-compatible connection on a (pseudo-)Riemanian manifold, which is the familiar Levi-Civita connection:
-        \[ \Gamma^l_{ij} = \{\substack{l\\ij}\} = \frac{1}{2}g^{lk}\Big(\partial_j g_{ik} + \partial_i g_{jk} - \partial_k g_{ij} \Big)\]
-        Here \(\Gamma\) denotes connection coefficients, and \(\{\}\) is the historic notation of the Christoffel symbols as appeared in Christoffel's 1869 paper and Einstein's 1915-1916 papers. From a purely mathematical perspective, it is not immediately obvious whether the torsion-free constraint is needed for a successful theory of gravitation. In fact, Einstein originally introduced Christoffel symbols not based on the aforementioned uniqueness theorem, but rather on his postulate that any quantity describing gravitation should depend solely on the metric and its derivatives<sup>[2]</sup>. However, even Einstein himself considered this assumption unnecessary in his later years:
-        <p class="quote">
-            ...the essential achievement of general relativity, namely to overcome "rigid" space (i.e. the inertial frame), is only indirectly connected with the introduction of a Riemannian metric. The directly relevant conceptual element is the "displacement field" (\(\it\Gamma\)), which expresses the infinitesimal displacement of vectors. ... This makes it possible to construct tensors by differentiation and hence to dispense with the introduction of "rigid" space (the inertial frame). In the face of this, it seems to be of secondary importance in some sense that some particular \(\it\Gamma\) field can be deduced from a Riemannian metric...  (Einstein, 1955)
-        </p>
-        <h3>1.2. Riemann-Cartan spacetime \(U_4\)</h3>
-        If torsion is included, the spacetime geometry is non-Riemannian. In terms of connection coefficients, extra terms are added to the Christoffel symbol:
-        \[ \Gamma^l_{ij} = \{\substack{l\\ij}\} + S_{ij}{}^k - S_j{}^k{}_i + S^k{}_{ij} =: \{\substack{l\\ij}\} - K_{ij}{}^k \]
-        The Riemann curvature tensor can be defined as usual to be the measurement of changes in vector components after the vector is parallelly transported around an infinitesimal area back to its starting point:
-        \[ R^l{}_{kij} = 2\partial_{[i}\Gamma^l_{j]k} + 2\Gamma^l_{[i|m}\Gamma^m_{|j]k} \] 
-        Since the definition of Riemann tensor does not depend on the particular form of connection, it is still antisymmetric in the first two and last two indices and still satisfies the Bianchi identity, although this is in general not the case for other identities. By symmetry, the Ricci tensor \(R_{ij}\) is still the only meaningful contraction of Riemann tensor, and the Einstein tensor \(G_{ij}\) can also be defined in the same way as in general relativity. However, due to \(\Gamma\) being asymmetric, \(R_{ij}\) and \(G_{ij}\) will be asymmetric in general. Riemann-Cartan spacetime \(U_4\) fits in the hierarchy of manifolds as follows:
-        \[ (L_4, g) \xrightarrow{\nabla g = 0} U_4 \xrightarrow{S=0} V_4 \xrightarrow{R = 0} R_4\]
-        In other words, the most general manifold equipped with a metric-preserving connection is the Riemann-Cartan \(U_4\). When torsion vanishes, it reduces to the pseudo-Riemannian \(V_4\) in general relativity. If in addition curvature vanishes, the manifold becomes Minkowskian \(R_4\).
-        
-        <h2>2. Field Equations of Einstein-Cartan Theory</h2>
-        <h3>2.1. Motivation</h3>
-        From the perspective of particle physics, all elmentary particles can be classified by the representations of the Poincar&eacute; group and be labeled by mass \(m\) and spin \(s\). \(m\) is associated with the translational part of Poincar&eacute; group and \(s\) with the rotational part <sup>[3]</sup>. With spin being such a fundamental notion that is distinct from mass, it is reasonble to hypothesize that spin angular momentum is also a source of a gravitational field. That is, spin can be supposed to be coupled to some geometrical quantity that characterizes the rotational degrees of freedom of spacetime, analogous to how energy-momentum is coupled to metric.
-        <h3>2.2. Canonical tensors</h3>
-        Suppose a matter field \(\psi(x^a)\) is distributed over spacetime and its action is
-        \[ S_{matter} = \int \mathfrak{L}(\psi,\partial\psi, g,\partial g, S) d^4x \]
-        From Noether's theorem, it can be shown that the canonical spin angular momentum tensor, defined as the Noether current for rotations (Lorentz transformations), can be expressed as the variational derivative of the Lagrangian density with respect to contortion, or the non-Christoffel part of the connection <sup>[3]</sup>:
-        \[\tau_k{}^{ji} := \frac{1}{\sqrt{-g}}\frac{\delta\mathfrak{L}}{\delta K_{ij}{}^k}\]
-        Additionally, with the following definitions
-        \[ \sigma^{ij} := \frac{2}{\sqrt{-g}}\frac{\delta\mathfrak{L}}{\delta g_{ij}},
-        \quad \mu_{k}{}^{ji} := \frac{1}{\sqrt{-g}}\frac{\delta\mathfrak{L}}{\delta S_{ij}{}^k},
-        \quad \stackrel{*}{\nabla}_k := \nabla_k + 2S_{kl}{}^l\]
-        the canonical energy-momentum tensor, or the Noether current for translations, is <sup>[3]</sup>:
-         \[ \Sigma^{ij} := \sigma^{ij} - \stackrel{*}{\nabla}_k\mu^{ijk}  = \sigma^{ij} + \stackrel{*}{\nabla}_k(\tau^{ijk} - \tau^{jki} + \tau^{kij})\]
-        where \(\sigma^{ij}\), the variational derivative of the Lagrangian density with respect to metric, is the familiar Hilbert stress-energy tensor, which alone is equivalent to the canonical energy-momentum tensor within the framework of general relativity. In Einstein-Cartan theory, however, the additional divergence term must be included to compensate for a non-zero torsion.
-        <h3>2.3. Variational principles</h3>
-        The field equations can be derived as always by doing a variation of the full action with respect to each independent variable, in this case \(g_{ij}\) and \(S_{ij}{}^k\). 
-        The most natural choice for the Lagrangian density of gravitational field is still the Einstein–Hilbert one:
-        \[\mathfrak{L}_{gravity} = \frac{1}{2\kappa}\mathfrak{R} = \frac{1}{2\kappa}\sqrt{-g} R\]
-        where \(\kappa = 8\pi G\). The total action is
-        \[ S = S_{matter} + S_{gravity} = \int \Big[ \mathfrak{L}(\psi,\partial\psi, g,\partial g, S) +  \frac{1}{2\kappa} \sqrt{-g}R  \Big]d^4x\]
-        Varying the action with respect to \(g_{ij}\) and \(S_{ij}{}^k\) gives:
-        \[ - \frac{\delta(\sqrt{-g}R)}{\delta g_{ij}} = \kappa \sqrt{-g} \left( \frac{2}{\sqrt{-g}}\frac{\delta{\mathfrak{L}}}{\delta g_{ij}} \right) = \kappa \sqrt{-g} \sigma^{ij} \tag{1}\]
-        \[ - \frac{\delta(\sqrt{-g}R)}{\delta S_{ij}{}^k} = 2\kappa \sqrt{-g} \left( \frac{1}{\sqrt{-g}}\frac{\delta{\mathfrak{L}}}{\delta S_{ij}{}^k} \right) = 2\kappa \sqrt{-g} \mu_k{}^{ji} \tag{2}\]
-        Using the definition of \(\Sigma^{ij}\) and equation (2), equation (1) can be written as:
-        \begin{align*} 
-        - \frac{\delta(\sqrt{-g}R)}{\delta g_{ij}}  &= \kappa \sqrt{-g} \left( \Sigma^{ij} + \stackrel{*}{\nabla}_k\mu^{ijk}\right)
-        = \kappa \sqrt{-g} \left[ \Sigma^{ij} + \stackrel{*}{\nabla}_k \left(\frac{g^{li}}{2\kappa\sqrt{-g}}\frac{\delta (\sqrt{-g}R)}{\delta S_{kj}{}^l}\right) \right] \\
-        &= \kappa \sqrt{-g} \left[ \Sigma^{ij} + \frac{g^{li}}{2\kappa\sqrt{-g}} \stackrel{*}{\nabla}_k \left(\frac{\delta (\sqrt{-g}R)}{\delta S_{kj}{}^l}\right) \right] \\
-        &= \kappa \sqrt{-g} \Sigma^{ij} + \frac{g^{li}}{2} \stackrel{*}{\nabla}_k \left(\frac{\delta (\sqrt{-g}R)}{\delta S_{kj}{}^l}\right)
-        \end{align*}
-        After some tedious calculations, the geometrical terms simplify drastically to \(G^{ij}\):
-        \[ - \frac{1}{\sqrt{-g}} \left[\frac{\delta(\sqrt{-g}R)}{\delta g_{ij}} + \frac{g^{li}}{2} \stackrel{*}{\nabla}_k \left(\frac{\delta (\sqrt{-g}R)}{\delta S_{kj}{}^l}\right)\right] =  \kappa \Sigma^{ij}
-        \quad\Rightarrow\quad G^{ij} = \kappa \Sigma^{ij} \]
-        Equation (2) can be written in terms of \(\tau^{ijk}\) by an antisymmetrization:
-        \[ -\frac{g^{l[j}}{2\sqrt{-g}}\frac{\delta(\sqrt{-g}R)}{\delta S_{i]k}{}^l} = \kappa \mu^{[ji]k} = \kappa \tau^{ijk} \]
-        The left-hand side evaluates to modified torsion \(T^{ijk}\), defined as torsion plus its trace:
-        \[ T_{ij}{}^k := S_{ij}{}^k + 2\delta^k_{[i}S_{j]l}{}^l\]
-        Thus we have obtained the two (sets of) field equations of Einstein-Cartan theory:
-        \[ G^{ij} = \kappa \Sigma^{ij} \tag{3} \]
-        \[ T^{ijk} = \kappa \tau^{ijk} \tag{4} \]
-        
-        <h2>3. Physical Implications</h2>
-        <h3>3.1. Spin-torsion coupling</h3>
-        The first set of field equations simply reduces to Einstein's equations in the case of zero spin. The second equation, however, reveals the coupling of torsion to the spin angular momentum of matter field. What is significant about (4), apart from the fact that it takes on a form analagous to (3), is that it is a set of simple algebraic equations rather than differential equations, which implies that torsion can only be zero outside of matter distribution and cannot propagate as a wave through vacuum -- it is bound to matter.
-        <h3>3.2. Comparison to general relativity</h3>
-        Furthermore, the fact that equation (4) is algebraic makes it possible to pull out the non-Riemannian part of \(G^{ij}\) in equation (3) and substitute all \(T^{ijk}\) with \(\kappa\tau^{ijk}\), resulting in a combined field equation that involves only the Riemannian part of \(G^{ij}\)<sup>[3]</sup>:
-        \[ G^{ij}_{\{\}}  = \kappa \Bigg[\sigma^{ij} + \kappa\Big( -4\tau^{ik}{}_{[l}\tau^{jl}{}_{k]} 
-        -2\tau^{ikl}\tau^j{}_{kl} + \tau^{kli}\tau_{kl}{}^j + \frac{1}{2}g^{ij}\left( 4\tau_m{}^k{}_{[l}\tau^{ml}{}_{k]} + \tau^{mkl}\tau_{mkl} \right)\Big) \Bigg] \]
-        Compared to Einstein's field equations, which under this notation is
-        \[G^{ij}_{\{\}} = \kappa \sigma^{ij} \]
-        the term consisting of various products of the spin tensor \(\tau\) manifests itself as the correction term, which obviously is very small due to the additional \(\kappa\) factor. Suppose the matter distribution is made up of polarized elementary particles with particle mass \(m\), spin \(\hbar/2\), and number density \(n\) From the combined field equation it is obvious that the mass density \(\rho = mn\) receives a correction from spin of order \(\kappa s^2 = \kappa (n\hbar/2)^2\). For spin to have an effect as significant as that of mass,
-        \[ mn \sim \kappa n^2\hbar^2 \quad\Rightarrow\quad n \sim \frac{m}{\kappa \hbar^2} \]
-        In terms of mass density <sup>[3]</sup>,
-        \[ \rho_{critical} \sim \frac{m^2}{\kappa \hbar^2} \approx \begin{cases}
-        10^{47} \, \text{g} \cdot \text{cm}^{-3} \text{ (electrons)} \\
-        10^{54} \,\text{g} \cdot \text{cm}^{-3} \text{ (neutrons)}
-        \end{cases}\]
-        Thus, Einstein-Cartan theory only produces non-negligible deviations from general relativity under extremely high densities that might in fact be unphysical.  
+    <h1>
+      PHYS-7125 Gravity Term Paper<br />
+      Overview of Einstein-Cartan Theory of Gravitation
+    </h1>
+    <p class="author">Wenqi He, &nbsp April 2019</p>
+    <h2>1. Mathematical Considerations</h2>
+    <h3>1.1. Cartan's torsion tensor</h3>
+    On a manifold with connection coefficients \(\Gamma^k_{ij}\), Cartan's
+    torsion tensor is defined as \[ S_{ij}{}^k := \Gamma^k_{[ij]} =
+    \frac{1}{2}(\Gamma^k_{ij} - \Gamma^k_{ji})\] which measures the extent to
+    which infinitesimal parallelograms fail to close. A vanishing torsion, as
+    the fundamental theorem of Riemannian geometry states<sup>[1]</sup>, leads
+    to a unique metric-compatible connection on a (pseudo-)Riemanian manifold,
+    which is the familiar Levi-Civita connection: \[ \Gamma^l_{ij} =
+    \{\substack{l\\ij}\} = \frac{1}{2}g^{lk}\Big(\partial_j g_{ik} + \partial_i
+    g_{jk} - \partial_k g_{ij} \Big)\] Here \(\Gamma\) denotes connection
+    coefficients, and \(\{\}\) is the historic notation of the Christoffel
+    symbols as appeared in Christoffel's 1869 paper and Einstein's 1915-1916
+    papers. From a purely mathematical perspective, it is not immediately
+    obvious whether the torsion-free constraint is needed for a successful
+    theory of gravitation. In fact, Einstein originally introduced Christoffel
+    symbols not based on the aforementioned uniqueness theorem, but rather on
+    his postulate that any quantity describing gravitation should depend solely
+    on the metric and its derivatives<sup>[2]</sup>. However, even Einstein
+    himself considered this assumption unnecessary in his later years:
+    <p class="quote">
+      ...the essential achievement of general relativity, namely to overcome
+      "rigid" space (i.e. the inertial frame), is only indirectly connected with
+      the introduction of a Riemannian metric. The directly relevant conceptual
+      element is the "displacement field" (\(\it\Gamma\)), which expresses the
+      infinitesimal displacement of vectors. ... This makes it possible to
+      construct tensors by differentiation and hence to dispense with the
+      introduction of "rigid" space (the inertial frame). In the face of this,
+      it seems to be of secondary importance in some sense that some particular
+      \(\it\Gamma\) field can be deduced from a Riemannian metric... (Einstein,
+      1955)
+    </p>
+    <h3>1.2. Riemann-Cartan spacetime \(U_4\)</h3>
+    If torsion is included, the spacetime geometry is non-Riemannian. In terms
+    of connection coefficients, extra terms are added to the Christoffel symbol:
+    \[ \Gamma^l_{ij} = \{\substack{l\\ij}\} + S_{ij}{}^k - S_j{}^k{}_i +
+    S^k{}_{ij} =: \{\substack{l\\ij}\} - K_{ij}{}^k \] The Riemann curvature
+    tensor can be defined as usual to be the measurement of changes in vector
+    components after the vector is parallelly transported around an
+    infinitesimal area back to its starting point: \[ R^l{}_{kij} =
+    2\partial_{[i}\Gamma^l_{j]k} + 2\Gamma^l_{[i|m}\Gamma^m_{|j]k} \] Since the
+    definition of Riemann tensor does not depend on the particular form of
+    connection, it is still antisymmetric in the first two and last two indices
+    and still satisfies the Bianchi identity, although this is in general not
+    the case for other identities. By symmetry, the Ricci tensor \(R_{ij}\) is
+    still the only meaningful contraction of Riemann tensor, and the Einstein
+    tensor \(G_{ij}\) can also be defined in the same way as in general
+    relativity. However, due to \(\Gamma\) being asymmetric, \(R_{ij}\) and
+    \(G_{ij}\) will be asymmetric in general. Riemann-Cartan spacetime \(U_4\)
+    fits in the hierarchy of manifolds as follows: \[ (L_4, g)
+    \xrightarrow{\nabla g = 0} U_4 \xrightarrow{S=0} V_4 \xrightarrow{R = 0}
+    R_4\] In other words, the most general manifold equipped with a
+    metric-preserving connection is the Riemann-Cartan \(U_4\). When torsion
+    vanishes, it reduces to the pseudo-Riemannian \(V_4\) in general relativity.
+    If in addition curvature vanishes, the manifold becomes Minkowskian \(R_4\).
 
-    <h1 class="clickable" onclick="document.querySelector('#appendix').classList.toggle('hidden');">
-      Appendix: Summary of Einstein's 1916 Paper<br>
-      <i>The Foundation of <br> the General Theory of Relativity</i>
+    <h2>2. Field Equations of Einstein-Cartan Theory</h2>
+    <h3>2.1. Motivation</h3>
+    From the perspective of particle physics, all elmentary particles can be
+    classified by the representations of the Poincar&eacute; group and be
+    labeled by mass \(m\) and spin \(s\). \(m\) is associated with the
+    translational part of Poincar&eacute; group and \(s\) with the rotational
+    part <sup>[3]</sup>. With spin being such a fundamental notion that is
+    distinct from mass, it is reasonble to hypothesize that spin angular
+    momentum is also a source of a gravitational field. That is, spin can be
+    supposed to be coupled to some geometrical quantity that characterizes the
+    rotational degrees of freedom of spacetime, analogous to how energy-momentum
+    is coupled to metric.
+    <h3>2.2. Canonical tensors</h3>
+    Suppose a matter field \(\psi(x^a)\) is distributed over spacetime and its
+    action is \[ S_{matter} = \int \mathfrak{L}(\psi,\partial\psi, g,\partial g,
+    S) d^4x \] From Noether's theorem, it can be shown that the canonical spin
+    angular momentum tensor, defined as the Noether current for rotations
+    (Lorentz transformations), can be expressed as the variational derivative of
+    the Lagrangian density with respect to contortion, or the non-Christoffel
+    part of the connection <sup>[3]</sup>: \[\tau_k{}^{ji} :=
+    \frac{1}{\sqrt{-g}}\frac{\delta\mathfrak{L}}{\delta K_{ij}{}^k}\]
+    Additionally, with the following definitions \[ \sigma^{ij} :=
+    \frac{2}{\sqrt{-g}}\frac{\delta\mathfrak{L}}{\delta g_{ij}}, \quad
+    \mu_{k}{}^{ji} := \frac{1}{\sqrt{-g}}\frac{\delta\mathfrak{L}}{\delta
+    S_{ij}{}^k}, \quad \stackrel{*}{\nabla}_k := \nabla_k + 2S_{kl}{}^l\] the
+    canonical energy-momentum tensor, or the Noether current for translations,
+    is <sup>[3]</sup>: \[ \Sigma^{ij} := \sigma^{ij} -
+    \stackrel{*}{\nabla}_k\mu^{ijk} = \sigma^{ij} +
+    \stackrel{*}{\nabla}_k(\tau^{ijk} - \tau^{jki} + \tau^{kij})\] where
+    \(\sigma^{ij}\), the variational derivative of the Lagrangian density with
+    respect to metric, is the familiar Hilbert stress-energy tensor, which alone
+    is equivalent to the canonical energy-momentum tensor within the framework
+    of general relativity. In Einstein-Cartan theory, however, the additional
+    divergence term must be included to compensate for a non-zero torsion.
+    <h3>2.3. Variational principles</h3>
+    The field equations can be derived as always by doing a variation of the
+    full action with respect to each independent variable, in this case
+    \(g_{ij}\) and \(S_{ij}{}^k\). The most natural choice for the Lagrangian
+    density of gravitational field is still the Einstein–Hilbert one:
+    \[\mathfrak{L}_{gravity} = \frac{1}{2\kappa}\mathfrak{R} =
+    \frac{1}{2\kappa}\sqrt{-g} R\] where \(\kappa = 8\pi G\). The total action
+    is \[ S = S_{matter} + S_{gravity} = \int \Big[
+    \mathfrak{L}(\psi,\partial\psi, g,\partial g, S) + \frac{1}{2\kappa}
+    \sqrt{-g}R \Big]d^4x\] Varying the action with respect to \(g_{ij}\) and
+    \(S_{ij}{}^k\) gives: \[ - \frac{\delta(\sqrt{-g}R)}{\delta g_{ij}} = \kappa
+    \sqrt{-g} \left( \frac{2}{\sqrt{-g}}\frac{\delta{\mathfrak{L}}}{\delta
+    g_{ij}} \right) = \kappa \sqrt{-g} \sigma^{ij} \tag{1}\] \[ -
+    \frac{\delta(\sqrt{-g}R)}{\delta S_{ij}{}^k} = 2\kappa \sqrt{-g} \left(
+    \frac{1}{\sqrt{-g}}\frac{\delta{\mathfrak{L}}}{\delta S_{ij}{}^k} \right) =
+    2\kappa \sqrt{-g} \mu_k{}^{ji} \tag{2}\] Using the definition of
+    \(\Sigma^{ij}\) and equation (2), equation (1) can be written as:
+    \begin{align*} - \frac{\delta(\sqrt{-g}R)}{\delta g_{ij}} &= \kappa
+    \sqrt{-g} \left( \Sigma^{ij} + \stackrel{*}{\nabla}_k\mu^{ijk}\right) =
+    \kappa \sqrt{-g} \left[ \Sigma^{ij} + \stackrel{*}{\nabla}_k
+    \left(\frac{g^{li}}{2\kappa\sqrt{-g}}\frac{\delta (\sqrt{-g}R)}{\delta
+    S_{kj}{}^l}\right) \right] \\ &= \kappa \sqrt{-g} \left[ \Sigma^{ij} +
+    \frac{g^{li}}{2\kappa\sqrt{-g}} \stackrel{*}{\nabla}_k \left(\frac{\delta
+    (\sqrt{-g}R)}{\delta S_{kj}{}^l}\right) \right] \\ &= \kappa \sqrt{-g}
+    \Sigma^{ij} + \frac{g^{li}}{2} \stackrel{*}{\nabla}_k \left(\frac{\delta
+    (\sqrt{-g}R)}{\delta S_{kj}{}^l}\right) \end{align*} After some tedious
+    calculations, the geometrical terms simplify drastically to \(G^{ij}\): \[ -
+    \frac{1}{\sqrt{-g}} \left[\frac{\delta(\sqrt{-g}R)}{\delta g_{ij}} +
+    \frac{g^{li}}{2} \stackrel{*}{\nabla}_k \left(\frac{\delta
+    (\sqrt{-g}R)}{\delta S_{kj}{}^l}\right)\right] = \kappa \Sigma^{ij}
+    \quad\Rightarrow\quad G^{ij} = \kappa \Sigma^{ij} \] Equation (2) can be
+    written in terms of \(\tau^{ijk}\) by an antisymmetrization: \[
+    -\frac{g^{l[j}}{2\sqrt{-g}}\frac{\delta(\sqrt{-g}R)}{\delta S_{i]k}{}^l} =
+    \kappa \mu^{[ji]k} = \kappa \tau^{ijk} \] The left-hand side evaluates to
+    modified torsion \(T^{ijk}\), defined as torsion plus its trace: \[
+    T_{ij}{}^k := S_{ij}{}^k + 2\delta^k_{[i}S_{j]l}{}^l\] Thus we have obtained
+    the two (sets of) field equations of Einstein-Cartan theory: \[ G^{ij} =
+    \kappa \Sigma^{ij} \tag{3} \] \[ T^{ijk} = \kappa \tau^{ijk} \tag{4} \]
+
+    <h2>3. Physical Implications</h2>
+    <h3>3.1. Spin-torsion coupling</h3>
+    The first set of field equations simply reduces to Einstein's equations in
+    the case of zero spin. The second equation, however, reveals the coupling of
+    torsion to the spin angular momentum of matter field. What is significant
+    about (4), apart from the fact that it takes on a form analagous to (3), is
+    that it is a set of simple algebraic equations rather than differential
+    equations, which implies that torsion can only be zero outside of matter
+    distribution and cannot propagate as a wave through vacuum -- it is bound to
+    matter.
+    <h3>3.2. Comparison to general relativity</h3>
+    Furthermore, the fact that equation (4) is algebraic makes it possible to
+    pull out the non-Riemannian part of \(G^{ij}\) in equation (3) and
+    substitute all \(T^{ijk}\) with \(\kappa\tau^{ijk}\), resulting in a
+    combined field equation that involves only the Riemannian part of
+    \(G^{ij}\)<sup>[3]</sup>: \[ G^{ij}_{\{\}} = \kappa \Bigg[\sigma^{ij} +
+    \kappa\Big( -4\tau^{ik}{}_{[l}\tau^{jl}{}_{k]} -2\tau^{ikl}\tau^j{}_{kl} +
+    \tau^{kli}\tau_{kl}{}^j + \frac{1}{2}g^{ij}\left(
+    4\tau_m{}^k{}_{[l}\tau^{ml}{}_{k]} + \tau^{mkl}\tau_{mkl} \right)\Big)
+    \Bigg] \] Compared to Einstein's field equations, which under this notation
+    is \[G^{ij}_{\{\}} = \kappa \sigma^{ij} \] the term consisting of various
+    products of the spin tensor \(\tau\) manifests itself as the correction
+    term, which obviously is very small due to the additional \(\kappa\) factor.
+    Suppose the matter distribution is made up of polarized elementary particles
+    with particle mass \(m\), spin \(\hbar/2\), and number density \(n\) From
+    the combined field equation it is obvious that the mass density \(\rho =
+    mn\) receives a correction from spin of order \(\kappa s^2 = \kappa
+    (n\hbar/2)^2\). For spin to have an effect as significant as that of mass,
+    \[ mn \sim \kappa n^2\hbar^2 \quad\Rightarrow\quad n \sim \frac{m}{\kappa
+    \hbar^2} \] In terms of mass density <sup>[3]</sup>, \[ \rho_{critical} \sim
+    \frac{m^2}{\kappa \hbar^2} \approx \begin{cases} 10^{47} \, \text{g} \cdot
+    \text{cm}^{-3} \text{ (electrons)} \\ 10^{54} \,\text{g} \cdot
+    \text{cm}^{-3} \text{ (neutrons)} \end{cases}\] Thus, Einstein-Cartan theory
+    only produces non-negligible deviations from general relativity under
+    extremely high densities that might in fact be unphysical.
+
+    <h1
+      class="clickable"
+      onclick="document.querySelector('#appendix').classList.toggle('hidden');"
+    >
+      Appendix: Summary of Einstein's 1916 Paper<br />
+      <i
+        >The Foundation of <br />
+        the General Theory of Relativity</i
+      >
     </h1>
     <p class="author">Wenqi He, &nbsp; December 2018</p>
 
-    <div id="appendix" class="hidden">    
-    <h2>1. Motivation</h2>
-    As stated at the end of the first section:
-    <p class="quote">The general laws of nature are to be expressed by equations which hold good for all systems of coordinates, that is, are covariant with respect to any substitutions whatever.</p>
-    <h2>2. Mathematical Preparation</h2>
-    Einstein claims:
-    <p class="quote">... a special study of the mathe- matical literature is not required for the understanding of the present paper.</p>
-    <h3>2.1. Tensor</h3>
-    Tensor are natural objects to investigate, for that
-    <p class="quote">... the equations of transformation for their components are linear and homogeneous. Accordingly, all the components in the new system vanish, if they all vanish in the original system. If, therefore, a law of nature is expressed by equating all the components of a tensor to zero, it is generally covariant.</p>
-    <h3>2.2. Covariant and Contravariant Tensor</h3>
-    Under a change of coordinates, covariant and contravariant indices of a tensor transform by
-    \[{A'}^\tau_{\sigma} = \dfrac{\partial x'^\tau}{\partial x^\nu}\dfrac{\partial x^\mu}{\partial x'^\sigma} A^\nu_\mu\]
-    <h3>2.3. Metric</h3>
-    The invariant line element of spacetime is determined by the metric tensor \(g_{\mu\nu}\) by definition: \[ds^2 = g_{\mu\nu}dx^\mu dx^\nu \]
-    <h3>2.4. Geodesic</h3>
-    The equation of geodesic is derived in this paper by doing variation on arclength:
-    \[ \delta S = \delta \int \sqrt{-g_{\mu\nu}\frac{dx^\mu}{d\lambda}\frac{dx^\nu}{d\lambda}}d\lambda = 0 \quad\Rightarrow\quad \frac{d^2x^\tau}{ds^2} + \Gamma^\tau_{\mu\nu}\frac{dx^\mu}{ds}\frac{dx^\nu}{ds} = 0\]
-    <h3>2.5. Covariant Derivative</h3>
-    The notion of covariant derivative is introduced in order to write what Einstein called 
-    <p class="quote">... generally covariant differential equations ...</p>
-    \[ \frac{d^2\phi}{ds^2} = \left(\frac{\partial^2\phi}{\partial x^\mu \partial x^\nu} + \Gamma^\tau_{\mu\nu} \frac{\partial\phi}{\partial x^\tau}\right)\frac{dx^\mu}{ds}\frac{dx^\nu}{ds} = \left(\frac{\partial A_\mu}{\partial x^\nu} + \Gamma^\tau_{\mu\nu} A_\tau \right)\frac{dx^\mu}{ds}\frac{dx^\nu}{ds}\]
-    must also be invariant. In order for the derivative to be tensorial,
-    \[ \nabla_\nu A_\mu := \frac{\partial A_\mu}{\partial x^\nu} + \Gamma^\tau_{\mu\nu}A_\tau \]
-    For rank two tensor \(A_{\mu\nu} = A_\mu B_\nu\), requiring that the derivative satisfy Leibniz rule,
-    \[ \nabla_\sigma A_{\mu\nu} : = \nabla_\sigma A_\mu B_\nu + A_\nu \nabla_\sigma B_\mu = \frac{\partial A_{\mu\nu}}{\partial x^\sigma} + \Gamma^\tau_{\sigma\mu}A_{\tau\nu} + \Gamma^\tau_{\sigma\nu}A_{\mu\tau} \]
-    <h3>2.6. Curvature</h3>
-    Riemann curvature tensor is defined by the commutator of covariant derivatives:
-    \[ [\nabla_\sigma, \nabla_\tau] A_\mu = R^\rho_{\mu\sigma\tau}A_\rho \]
-    Einstein pointed out the significance of Riemann tensor, citing the theorem that \(g_{\mu\nu}\) could be made constant under appropriate coordinates if \(R^\rho_{\mu\sigma\tau} = 0\).
-    Contracting the Riemann tensor gives the Ricci tensor \(R_{\mu\nu}\):
-    \[ R_{\mu\nu} = \frac{\partial\Gamma^\alpha_{\mu\nu}}{\partial x^\alpha} - \Gamma^\beta_{\mu\alpha}\Gamma^\alpha_{\nu\beta} \quad (\sqrt{−g} = 1) \]
-    which he considered particularly interesting, for that
-    <p class="quote">
-    ...besides \(\it{R_{\mu\nu}}\) there is no tensor of second rank which is formed from the \(\it{g_{\mu\nu}}\) and its derivatives, contains no derivations higher than second, and is linear is these derivatives.
-    </p>    
-    <h2>3. Physical Postulates</h2>
-    <p class="quote">Spacetime tells matter how to move; matter tells spacetime how to curve. -- John A. Wheeler</p> 
-    <h3>3.1. Equations of Motion</h3>
-    The first postulate is that particles follow the geodesic
-    \[ \frac{d^2x^\tau}{ds^2} = -\Gamma^\tau_{\mu\nu} \frac{dx^\mu}{ds}\frac{dx^\nu}{ds} \]
-    Einstein calls the Christoffel symbols \(\Gamma^\tau_{\mu\nu}\)
-    <p class="quote">... the components of the gravitational field ...</p>
-    since
-    <p class="quote">... if the \(\it{\Gamma}\) vanish, then particle moves uniformly in a straight line. These quantities therefore
-    condition the deviation of the motion from uniformity.</p>
-    <h3>3.2. Field Equations and Laws of Conservation</h3>
-    <h4>3.2.1. In the Absence of Matter</h4>
-    Einstein argues that, for compatibility with special relativity, the field equations must be less restrictive than, but (as a special case) reducible to, the vanishing of the Riemann tensor. Hence:
-    \[R_{\mu\nu} = 0 \]
-    
-    From the Lagrangian, Einstein derived the Noether current:
-    \[ \frac{\partial}{\partial x^\alpha}\Big(\partial_\sigma g^{\mu\nu} \frac{\partial\mathcal{L}}{\partial\partial_\alpha g^{\mu\nu}} - \delta^\alpha_\sigma \mathcal{L}\Big) = 0, \quad\text{where } \mathcal{L} = g_{\mu\nu}\Gamma^\alpha_{\mu\beta}\Gamma^\beta_{\nu\alpha}\]
-    <p class="quote">
-      This equation expresses the law of conservation of momentum and of energy for the gravitational field.
-    </p>
-      The definition of the energy components of the gravitational field was then given as:
-    \[ t^\alpha_\sigma := -\frac{1}{2\kappa}\Big(\partial_\sigma g^{\mu\nu} \frac{\partial\mathcal{L}}{\partial\partial_\alpha g^{\mu\nu}} - \delta^\alpha_\sigma \mathcal{L}\Big), \quad t = t^\alpha_\alpha \]
-   Pulling all terms involving \(t^\sigma_\mu\) and its trace to the right gives
-       \[\frac{\partial}{\partial x^\alpha}\Big(g^{\sigma\beta}\Gamma^\alpha_{\mu\beta}\Big) = -\kappa\left(t^\sigma_\mu - \frac{1}{2}\delta^\sigma_\mu t\right) \tag{1}\]
-    which, as Einstein immediately pointed out,
-    <p class="quote">
+    <div id="appendix" class="hidden">
+      <h2>1. Motivation</h2>
+      As stated at the end of the first section:
+      <p class="quote">
+        The general laws of nature are to be expressed by equations which hold
+        good for all systems of coordinates, that is, are covariant with respect
+        to any substitutions whatever.
+      </p>
+      <h2>2. Mathematical Preparation</h2>
+      Einstein claims:
+      <p class="quote">
+        ... a special study of the mathe- matical literature is not required for
+        the understanding of the present paper.
+      </p>
+      <h3>2.1. Tensor</h3>
+      Tensor are natural objects to investigate, for that
+      <p class="quote">
+        ... the equations of transformation for their components are linear and
+        homogeneous. Accordingly, all the components in the new system vanish,
+        if they all vanish in the original system. If, therefore, a law of
+        nature is expressed by equating all the components of a tensor to zero,
+        it is generally covariant.
+      </p>
+      <h3>2.2. Covariant and Contravariant Tensor</h3>
+      Under a change of coordinates, covariant and contravariant indices of a
+      tensor transform by \[{A'}^\tau_{\sigma} = \dfrac{\partial
+      x'^\tau}{\partial x^\nu}\dfrac{\partial x^\mu}{\partial x'^\sigma}
+      A^\nu_\mu\]
+      <h3>2.3. Metric</h3>
+      The invariant line element of spacetime is determined by the metric tensor
+      \(g_{\mu\nu}\) by definition: \[ds^2 = g_{\mu\nu}dx^\mu dx^\nu \]
+      <h3>2.4. Geodesic</h3>
+      The equation of geodesic is derived in this paper by doing variation on
+      arclength: \[ \delta S = \delta \int
+      \sqrt{-g_{\mu\nu}\frac{dx^\mu}{d\lambda}\frac{dx^\nu}{d\lambda}}d\lambda =
+      0 \quad\Rightarrow\quad \frac{d^2x^\tau}{ds^2} +
+      \Gamma^\tau_{\mu\nu}\frac{dx^\mu}{ds}\frac{dx^\nu}{ds} = 0\]
+      <h3>2.5. Covariant Derivative</h3>
+      The notion of covariant derivative is introduced in order to write what
+      Einstein called
+      <p class="quote">... generally covariant differential equations ...</p>
+      \[ \frac{d^2\phi}{ds^2} = \left(\frac{\partial^2\phi}{\partial x^\mu
+      \partial x^\nu} + \Gamma^\tau_{\mu\nu} \frac{\partial\phi}{\partial
+      x^\tau}\right)\frac{dx^\mu}{ds}\frac{dx^\nu}{ds} = \left(\frac{\partial
+      A_\mu}{\partial x^\nu} + \Gamma^\tau_{\mu\nu} A_\tau
+      \right)\frac{dx^\mu}{ds}\frac{dx^\nu}{ds}\] must also be invariant. In
+      order for the derivative to be tensorial, \[ \nabla_\nu A_\mu :=
+      \frac{\partial A_\mu}{\partial x^\nu} + \Gamma^\tau_{\mu\nu}A_\tau \] For
+      rank two tensor \(A_{\mu\nu} = A_\mu B_\nu\), requiring that the
+      derivative satisfy Leibniz rule, \[ \nabla_\sigma A_{\mu\nu} : =
+      \nabla_\sigma A_\mu B_\nu + A_\nu \nabla_\sigma B_\mu = \frac{\partial
+      A_{\mu\nu}}{\partial x^\sigma} + \Gamma^\tau_{\sigma\mu}A_{\tau\nu} +
+      \Gamma^\tau_{\sigma\nu}A_{\mu\tau} \]
+      <h3>2.6. Curvature</h3>
+      Riemann curvature tensor is defined by the commutator of covariant
+      derivatives: \[ [\nabla_\sigma, \nabla_\tau] A_\mu =
+      R^\rho_{\mu\sigma\tau}A_\rho \] Einstein pointed out the significance of
+      Riemann tensor, citing the theorem that \(g_{\mu\nu}\) could be made
+      constant under appropriate coordinates if \(R^\rho_{\mu\sigma\tau} = 0\).
+      Contracting the Riemann tensor gives the Ricci tensor \(R_{\mu\nu}\): \[
+      R_{\mu\nu} = \frac{\partial\Gamma^\alpha_{\mu\nu}}{\partial x^\alpha} -
+      \Gamma^\beta_{\mu\alpha}\Gamma^\alpha_{\nu\beta} \quad (\sqrt{−g} = 1) \]
+      which he considered particularly interesting, for that
+      <p class="quote">
+        ...besides \(\it{R_{\mu\nu}}\) there is no tensor of second rank which
+        is formed from the \(\it{g_{\mu\nu}}\) and its derivatives, contains no
+        derivations higher than second, and is linear is these derivatives.
+      </p>
+      <h2>3. Physical Postulates</h2>
+      <p class="quote">
+        Spacetime tells matter how to move; matter tells spacetime how to curve.
+        -- John A. Wheeler
+      </p>
+      <h3>3.1. Equations of Motion</h3>
+      The first postulate is that particles follow the geodesic \[
+      \frac{d^2x^\tau}{ds^2} = -\Gamma^\tau_{\mu\nu}
+      \frac{dx^\mu}{ds}\frac{dx^\nu}{ds} \] Einstein calls the Christoffel
+      symbols \(\Gamma^\tau_{\mu\nu}\)
+      <p class="quote">... the components of the gravitational field ...</p>
+      since
+      <p class="quote">
+        ... if the \(\it{\Gamma}\) vanish, then particle moves uniformly in a
+        straight line. These quantities therefore condition the deviation of the
+        motion from uniformity.
+      </p>
+      <h3>3.2. Field Equations and Laws of Conservation</h3>
+      <h4>3.2.1. In the Absence of Matter</h4>
+      Einstein argues that, for compatibility with special relativity, the field
+      equations must be less restrictive than, but (as a special case) reducible
+      to, the vanishing of the Riemann tensor. Hence: \[R_{\mu\nu} = 0 \] From
+      the Lagrangian, Einstein derived the Noether current: \[
+      \frac{\partial}{\partial x^\alpha}\Big(\partial_\sigma g^{\mu\nu}
+      \frac{\partial\mathcal{L}}{\partial\partial_\alpha g^{\mu\nu}} -
+      \delta^\alpha_\sigma \mathcal{L}\Big) = 0, \quad\text{where } \mathcal{L}
+      = g_{\mu\nu}\Gamma^\alpha_{\mu\beta}\Gamma^\beta_{\nu\alpha}\]
+      <p class="quote">
+        This equation expresses the law of conservation of momentum and of
+        energy for the gravitational field.
+      </p>
+      The definition of the energy components of the gravitational field was
+      then given as: \[ t^\alpha_\sigma :=
+      -\frac{1}{2\kappa}\Big(\partial_\sigma g^{\mu\nu}
+      \frac{\partial\mathcal{L}}{\partial\partial_\alpha g^{\mu\nu}} -
+      \delta^\alpha_\sigma \mathcal{L}\Big), \quad t = t^\alpha_\alpha \]
+      Pulling all terms involving \(t^\sigma_\mu\) and its trace to the right
+      gives \[\frac{\partial}{\partial
+      x^\alpha}\Big(g^{\sigma\beta}\Gamma^\alpha_{\mu\beta}\Big) =
+      -\kappa\left(t^\sigma_\mu - \frac{1}{2}\delta^\sigma_\mu t\right)
+      \tag{1}\] which, as Einstein immediately pointed out,
+      <p class="quote">
         ... is particularly useful for a vivid grasp of our subject.
-    </p>
-    <h4>3.2.2 General Form</h4>
-    Einstein added the energy tensor of matter \(T_\mu^\sigma\) to the field equations on the grounds that matter contributions should constitute the source term, analogously to Poisson's equation. Equation (1) then becomes:
-    \[ \frac{\partial}{\partial x^\alpha}\Big(g^{\sigma\beta}\Gamma^\alpha_{\mu\beta}\Big) = -\kappa\Big[\big(t^\sigma_\mu + T^\sigma_\mu\big) - \frac{1}{2}\delta^\sigma_\mu(t + T)\Big]\]
-    Absorbing \(t^\sigma_\mu\) and \(t\) back to the left yields the well-known field equation:
-    \[ R_{\mu\nu} = \kappa \Big(T_{\mu\nu} - \frac{1}{2} T g_{\mu\nu} \Big) \]
-    Lastly, it was verified that conservation laws still hold for energy tensors, that is,
-    \[ \frac{\partial\big(t^\sigma_\mu + T^\sigma_\mu\big)}{\partial x^\sigma} = 0 \]
-    <h3>3.3 Newtonian Approximation</h3>
-    <h4>3.3.1 Equations of Motion</h4> 
-    Suppose \(\Gamma^\tau_{\mu\nu}\) are small quantities, and the speed of particle is small compared to the speed of light, that is, \(dx^\alpha/ds\) are small quantities and \(dt/ds = dx^0/ds \approx 1\). Additionally, suppose the gravitational field is quasistatic, that is, \(\partial g_{\mu\nu}/\partial t = \partial g_{\mu\nu}/\partial x^0 = 0\). Then,
-    \[ \frac{d^2x^\tau}{ds^2} = -\Gamma^\tau_{\mu\nu} \frac{dx^\mu}{ds}\frac{dx^\nu}{ds} \quad\Rightarrow\quad \frac{d^2x^\alpha}{dt^2} = -\Gamma^\alpha_{00} = -\frac{1}{2}\frac{\partial g_{00}}{\partial x^\alpha}, \quad \alpha = 1,2,3 \]
-    This is exactly the equations of motion in Newtonian theory if \(\phi = g_{00}/2\):
-    <p class="quote">What is remarkable in this result is that the component \(\it{g_{00}}\) of the fundamental tensor alone defines, to a first approximation, the motion of the material point.</p>
-    
-    <h4>3.3.2 Field Equations</h4>
-    Suppose the only non-vanishing component of \(T_{\mu\nu}\) is \(T_{00} = T = ρ\). For \(\mu = \nu = 0 \),
-    \[ LHS = R_{00} \approx \frac{\partial}{\partial x^\alpha} \Gamma^\alpha_{00} = \frac{\partial}{\partial x^\alpha}\left(\frac{1}{2}\frac{\partial g_{00}}{\partial x^\alpha}\right) = \frac{\partial^2}{(\partial x^\alpha)^2}\left(\frac{g_{00}}{2}\right) = \frac{\partial^2\phi}{(\partial x^\alpha)^2}\]
-    \[ RHS = \kappa \Big(T_{00} - \frac{1}{2}Tg_{00}\Big) \approx -\kappa \Big(\rho - \frac{1}{2} \rho\Big) = - \frac{\kappa\rho}{2} \]
-    The field equations reduce to Poisson's equation for Newton's law of gravitation:
-    \[ \frac{\partial^2\phi}{(\partial x^\alpha)^2} = - \frac{\kappa\rho}{2} = \frac{4\pi G\rho}{c^4} \quad\Rightarrow\quad \kappa = - \frac{8\pi G}{c^4} \]
-    The field equations can now be rewritten as:
-    \[ R_{\mu\nu} = \frac{8\pi G}{c^4} \Big(T_{\mu\nu} - \frac{1}{2} T g_{\mu\nu} \Big) \]
-    or equivalently,
-    \[ R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu} = \frac{8\pi G}{c^4}T_{\mu\nu} \]
-  </div>
-  <div id="reference">
-    <h2>References</h2>
-    <p class="citation">
-      [1] Einstein, Albert. "The foundation of the general theory of relativity." <i>Annalen der Physik</i> 49, no. 7 (1916): 769-822.
-    </p>
-    <p class="citation">
-      [2] Hehl, Friedrich W., Paul Von der Heyde, G. David Kerlick, and James M. Nester. "General relativity with spin and torsion: Foundations and prospects."<i>Reviews of Modern Physics</i> 48, no. 3 (1976): 393.
-    </p>
-  </div>
+      </p>
+      <h4>3.2.2 General Form</h4>
+      Einstein added the energy tensor of matter \(T_\mu^\sigma\) to the field
+      equations on the grounds that matter contributions should constitute the
+      source term, analogously to Poisson's equation. Equation (1) then becomes:
+      \[ \frac{\partial}{\partial
+      x^\alpha}\Big(g^{\sigma\beta}\Gamma^\alpha_{\mu\beta}\Big) =
+      -\kappa\Big[\big(t^\sigma_\mu + T^\sigma_\mu\big) -
+      \frac{1}{2}\delta^\sigma_\mu(t + T)\Big]\] Absorbing \(t^\sigma_\mu\) and
+      \(t\) back to the left yields the well-known field equation: \[ R_{\mu\nu}
+      = \kappa \Big(T_{\mu\nu} - \frac{1}{2} T g_{\mu\nu} \Big) \] Lastly, it
+      was verified that conservation laws still hold for energy tensors, that
+      is, \[ \frac{\partial\big(t^\sigma_\mu + T^\sigma_\mu\big)}{\partial
+      x^\sigma} = 0 \]
+      <h3>3.3 Newtonian Approximation</h3>
+      <h4>3.3.1 Equations of Motion</h4>
+      Suppose \(\Gamma^\tau_{\mu\nu}\) are small quantities, and the speed of
+      particle is small compared to the speed of light, that is,
+      \(dx^\alpha/ds\) are small quantities and \(dt/ds = dx^0/ds \approx 1\).
+      Additionally, suppose the gravitational field is quasistatic, that is,
+      \(\partial g_{\mu\nu}/\partial t = \partial g_{\mu\nu}/\partial x^0 = 0\).
+      Then, \[ \frac{d^2x^\tau}{ds^2} = -\Gamma^\tau_{\mu\nu}
+      \frac{dx^\mu}{ds}\frac{dx^\nu}{ds} \quad\Rightarrow\quad
+      \frac{d^2x^\alpha}{dt^2} = -\Gamma^\alpha_{00} =
+      -\frac{1}{2}\frac{\partial g_{00}}{\partial x^\alpha}, \quad \alpha =
+      1,2,3 \] This is exactly the equations of motion in Newtonian theory if
+      \(\phi = g_{00}/2\):
+      <p class="quote">
+        What is remarkable in this result is that the component \(\it{g_{00}}\)
+        of the fundamental tensor alone defines, to a first approximation, the
+        motion of the material point.
+      </p>
+
+      <h4>3.3.2 Field Equations</h4>
+      Suppose the only non-vanishing component of \(T_{\mu\nu}\) is \(T_{00} = T
+      = ρ\). For \(\mu = \nu = 0 \), \[ LHS = R_{00} \approx
+      \frac{\partial}{\partial x^\alpha} \Gamma^\alpha_{00} =
+      \frac{\partial}{\partial x^\alpha}\left(\frac{1}{2}\frac{\partial
+      g_{00}}{\partial x^\alpha}\right) = \frac{\partial^2}{(\partial
+      x^\alpha)^2}\left(\frac{g_{00}}{2}\right) =
+      \frac{\partial^2\phi}{(\partial x^\alpha)^2}\] \[ RHS = \kappa \Big(T_{00}
+      - \frac{1}{2}Tg_{00}\Big) \approx -\kappa \Big(\rho - \frac{1}{2}
+      \rho\Big) = - \frac{\kappa\rho}{2} \] The field equations reduce to
+      Poisson's equation for Newton's law of gravitation: \[
+      \frac{\partial^2\phi}{(\partial x^\alpha)^2} = - \frac{\kappa\rho}{2} =
+      \frac{4\pi G\rho}{c^4} \quad\Rightarrow\quad \kappa = - \frac{8\pi G}{c^4}
+      \] The field equations can now be rewritten as: \[ R_{\mu\nu} = \frac{8\pi
+      G}{c^4} \Big(T_{\mu\nu} - \frac{1}{2} T g_{\mu\nu} \Big) \] or
+      equivalently, \[ R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu} = \frac{8\pi
+      G}{c^4}T_{\mu\nu} \]
+    </div>
+    <div id="reference">
+      <h2>References</h2>
+      <p class="citation">
+        [1] Einstein, Albert. "The foundation of the general theory of
+        relativity." <i>Annalen der Physik</i> 49, no. 7 (1916): 769-822.
+      </p>
+      <p class="citation">
+        [2] Hehl, Friedrich W., Paul Von der Heyde, G. David Kerlick, and James
+        M. Nester. "General relativity with spin and torsion: Foundations and
+        prospects."<i>Reviews of Modern Physics</i> 48, no. 3 (1976): 393.
+      </p>
+    </div>
   </body>
 </html>
