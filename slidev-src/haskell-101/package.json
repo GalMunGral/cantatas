@@ -13,6 +13,10 @@
   },
   "name": "haskell-fp",
   "devDependencies": {
-    "esbuild": "^0.12.15"
+    "esbuild": "^0.12.15",
+    "fastq": "^1.13.0",
+    "is-glob": "^4.0.3",
+    "prettier": "^2.6.2",
+    "string-width": "^5.1.2"
   }
 }
