@@ -635,23 +635,6 @@ function Tree({ data }) {
 - `store.commit(mutationType, payload)`, `store.dispatch(actionType, payload)`
 - component binding helpers: [`mapState`](https://vuex.vuejs.org/guide/state.html#the-mapstate-helper), [`mapGetters`](https://vuex.vuejs.org/guide/getters.html#the-mapgetters-helper), [`mapMutations`](https://vuex.vuejs.org/guide/mutations.html#committing-mutations-in-components), [`mapAction`](https://vuex.vuejs.org/guide/actions.html#dispatching-actions-in-components)
 
-### Vue Router
-
-- `new VueRouter({ mode: 'hash'|'history'|'abstract', routes: [ { path: '/some/path/:id', component: A|() => import('./b')} ] })`
-- `<router-link to="/path">`, `<router-view>`, `this.$route.params.id`, `this.$router.push|replace|go`
-
-### Data Link, Network, Transport, Session Layers
-
-- Switch - data link layer, MAC address
-- Router - network layer, IP address
-- UDP - _connectionless, unreliable_ transport, minimum overhead.
-- TCP - _connection-oriented, reliable_ transport
-  - **3-way handshake**: SYN(seq=x), SYN-ACK(seq=y, ack=x+1), ACK(seq=x+1, ack=y+1)
-  - **4-way termination**: FIN(seq=x, ack=y), ACK(seq=y, ack=x+1), FIN-ACK(seq=z, ack=x+1), ACK(seq=x+1, ack=z+1)
-  - **Reliable Transmission**: _sequence number_ (序列号) for each byte, _acknowledgement_ (确认应答), _retransmission (timeout/dupacks)_
-  - **Error Detection**: checksum (检验和) header
-  - **Flow Control**: window size header
-  - **Congestion Control**: slow-start, congestion avoidance, fast retransmit (3 duplicate ACKs), fast recovery (TCP Reno skips slow start)
 - TLS (RSA) handshake [[article]](https://www.cloudflare.com/learning/ssl/what-happens-in-a-tls-handshake/):
 
   - "client hello" (supported TLS version/cipher suites, "client random")
@@ -718,19 +701,6 @@ function Tree({ data }) {
   - **Clickjacking** (点击劫持): hidden iframe (bottom + `pointer-events: none`, top + transparent)
     - `Content-Security-Policy: frame-ancestors 'none'|'self'|<source>`, `X-Frame-Options: DENY|SAMEORIGIN`
     - `SameSite=Strict|Lax` cookies are not sent when loading frames (cross-site subrequest)
-
-  ```
-  GET /chat HTTP/1.1
-  Upgrade: websocket
-  Connection: Upgrade
-  Sec-WebSocket-Key: <...>
-  Sec-WebSocket-Version: 13
-
-  HTTP/1.1 101 Switching Protocols
-  Upgrade: websocket
-  Connection: Upgrade
-  Sec-WebSocket-Accept: base64(sha1(<Sec-WebSocket-Key> + "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"))
-  ```
 
 ### Absolute positioning
 
