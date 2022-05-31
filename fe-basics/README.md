@@ -1,5 +1,3 @@
-# 1. From Primitives to Frameworks
-
 ## Type, Coercion
 
 - `typeof`: `undefined`, `boolean`, `number`, `bigint`, `string`, `symbol`, `function`, `object`
@@ -363,22 +361,6 @@ function runGenerator(generator) {
 }
 ```
 
-## Web APIs
-
-### `EventTarget`
-
-- Event capturing (捕获), bubbling (冒泡), delegation (using `event.target`)
-  ```js
-  function bind(el, evt, fn, sel) {
-    el.addEventListener(evt, (e) => {
-      if (!sel || e.target.matches(sel)) {
-        fn.call(e.target, e);
-      }
-    });
-  }
-  ```
-- `this` and `e.currentTarget` point to attached element [[MDN]](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#The_value_of_this_within_the_handler)
-- `new Event(typeArg, init)`, `EventTarget.dispatch(event)`
 - ```js
   function debounce(fn, delay) {
     let timer;
@@ -467,13 +449,6 @@ class jQuery {
   const value = cookies.get("key");
   ```
 - `localStorage|sessionStorage`, at least 5MB/10MB max per domain
-
-## Frameworks
-
-- [Article: Change Detection in JavaScript Frameworks](http://teropa.info/blog/2015/03/02/change-and-its-detection-in-javascript-frameworks.html)
-- Abstraction & Overhead: https://github.com/atom/atom/pull/5624
-
-### React
 
 #### Basic Usage
 
@@ -697,8 +672,6 @@ function Tree({ data }) {
   - Client verifies server certificate using CA public key, sends "premaster secret" encrypted with server public key, server decrypts.
   - Client and server both generate session keys and send an encrypted "finished" messages to each other.
 
-### HTTP
-
 #### Versions
 
 - HTTP/1.0
@@ -759,6 +732,7 @@ _1xx (informational) ,2xx (successful), 3xx (redirects), 4xx (client errors), 5x
     - Server validate signature, check _scopes (permissions)_
   - OAuth (开放授权) 2.0 -> OpenID Connect [[spec]](https://openid.net/specs/openid-connect-core-1_0.html#Authentication)
 - **Security**: `Content-Security-Policy`, `X-Frame-Options`
+
   - **CSRF** (跨站请求伪造): exploits authentication automatically provided by browser (cookie, basic auth, etc)
     - Set cookie attribute `SameSite=Strict`
     - Send CSRF token with requests, validate token on server
@@ -771,6 +745,7 @@ _1xx (informational) ,2xx (successful), 3xx (redirects), 4xx (client errors), 5x
   - **Clickjacking** (点击劫持): hidden iframe (bottom + `pointer-events: none`, top + transparent)
     - `Content-Security-Policy: frame-ancestors 'none'|'self'|<source>`, `X-Frame-Options: DENY|SAMEORIGIN`
     - `SameSite=Strict|Lax` cookies are not sent when loading frames (cross-site subrequest)
+
 - **WebSocket Handshake** [[MDN]](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_servers)
 
   ```
@@ -785,8 +760,6 @@ _1xx (informational) ,2xx (successful), 3xx (redirects), 4xx (client errors), 5x
   Connection: Upgrade
   Sec-WebSocket-Accept: base64(sha1(<Sec-WebSocket-Key> + "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"))
   ```
-
-### API
 
 #### XMLHttpRequest
 
@@ -838,8 +811,6 @@ function myFetch(url) {
 }
 ```
 
-#### Axios [[GitHub]](https://github.com/axios/axios)
-
 _config -> request interceptors -> request transformers -> [adapter](https://github.com/axios/axios/tree/master/lib/adapters#axios--adapters) -> response transformers -> response interceptors -> response/error_
 
 ```js
@@ -879,54 +850,6 @@ axios({
 - **`instance = axios.create(config)`**, **`instance.<methods>(...)`**
 - **`axios.defaults.<option>`**, **`instance.defaults.<option>`**
 - **`axios.interceptors.request|response.use(config|response => {}, error => {})`**
-
-# 2. From Rendering to Building
-
-## CSS
-
-### Units, Responsive Web Design
-
-- `px` (CSS), `em`, `rem`, `vw/vh/vmin/vmax`
-- `window.devicePixelRatio` - physical resolution/CSS resolution, i.e. CSS pixel size/physical pixel size
-- **layout viewport, visual viewport, ideal viewport** [[Visualization]](https://www.quirksmode.org/mobile/viewports/) [[YouTube]](https://www.youtube.com/watch?v=CKVFKyHl_Ag)
-  - `screen.width` -> ideal viewport, `window.innerWidth` -> layout viewport
-  - `<meta name="viewport" content="...">` [[article]](https://www.quirksmode.org/mobile/metaviewport/)
-    - If `scale` is set, `layoutViewportWidth = visualViewportWidth = idealViewportWidth / scale`
-    - If `width` is also set, `layoutViewportWidth = max(visualViewportWidth, width)`
-  - Media query (媒体查询): `@media only screen and (...) { ... }`
-    - `min|max-width: <width>` - _layout viewport_ width
-    - `min|max-device-width: <width>` - _ideal viewport_ width
-
-#### How to set border to 1 _physical_ pixel
-
-- Set `initial|min|max-scale` to `1 / window.devicePixelRatio`
-- Set `data-device` attribute to `window.devicePixelRatio`, and
-
-  ```css
-  /* 1 */
-  #container[data-device="2"] {
-    border: 0.5 px solid #333; /* has compatibility issues*/
-  }
-
-  /* 2 */
-  #container {
-    position: relative;
-  }
-  #container[data-device="2"]::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    box-sizing: border-box;
-    width: 200%;
-    height: 200%;
-    border: 1px solid #333;
-    transform-origin: left top;
-    transform: scale(0.5);
-  }
-  ```
-
-### Cascade Algorithm
 
 1. **Origin and Importance**: _user agent -> user -> author -> author important -> user important -> user-agent important_ [[MDN]](https://developer.mozilla.org/en-US/docs/Web/CSS/Cascade#Cascading_order)
 2. **Specificity**: _inline ? -> # ID selectors -> # class/attribute selectors, pseudo-classes -> # element selectors, pseudo-elements_
@@ -978,16 +901,7 @@ axios({
     }
     ```
 
-### Flex Layout
-
-- Flex container
-  - `flex-direction: row|column(-reverse)`, `flex-wrap: nowrap|wrap`, `flex-flow: <direction> <wrap>`
-  - **`justify-content: (flex-)start|(flex-)end|center|space-between|space-around|space-evenly`**, `align-content` (no effect if single line).
-  - **`align-items: (flex-)start|(flex-)end|center|stretch`**
-- Flex item
-  - **`flex-grow`**, **`flex-shrink`**(_multiplied by flex base size_ when distributing negative space [[W3C spec]](https://drafts.csswg.org/css-flexbox-1/#valdef-flex-flex-shrink)), **`flex-basis`**
-  - **`flex: <flex-grow> <flex-shrink> <flex-basis>`**, `initial` (`0 1 auto`), `auto` (`1 1 auto`), `none` (`0 0 auto`)
-  - `order`, `align-self`
+`initial` (`0 1 auto`), `auto` (`1 1 auto`), `none` (`0 0 auto`)
 
 ### Float 3-Column Layout
 
@@ -1056,107 +970,6 @@ axios({
   width: 200px;
 }
 ```
-
-## Web Performance
-
-### First Meaningful Paint (FMP), Time to Interactive (TTI)
-
-- Reduce **latency**: CDN - pull (reverse proxy with caching), push (upload)
-- Reduce **file size**: minification, file compression (e.g. GZip)
-- Reduce **number of requests**: HTTP cache, inline/concatenate resources, server-side rendering (SSR), avoid CSS `@import`
-- _CSS is render-blocking_ -> **Put CSS at the top, load as soon as possible** -> Reduce FMP
-  - CSS itself is not parser-blocking, but it blocks scripts which block HTML parsing
-- _JS is parser-blocking_ -> **Put JS at the bottom, or use `defer`/`async`** -> Reduce FMP
-- **Run script on `DOMContentLoaded` not `load` (all resources loaded)** -> Reduce TTI
-- **Loading resources (data/code) asynchronously** -> Reduce TTI
-  - Load JS modules using dynamic `import()`
-  - Lazy-load images (e.g. when bottom is reached: `scrollHeight - scrollTop == clientHeight`)
-
-### Critical Rendering Path [[article]](https://bitsofco.de/understanding-the-critical-rendering-path/)
-
-- Optimize selectors, remove unused ones [[article]](https://csswizardry.com/2011/09/writing-efficient-css-selectors/) [[article]](https://stackoverflow.com/a/3851754/10827418)
-- Debounce/throttle events, reduce DOM operations -> Reduce **reflow, repaint**
-- Avoid **forced synchronous layout** (_reflow and repaint are asynchronous by default_)
-  - Caused by reading DOM geometry properties and `window.getComputedStyle(el)` _while there are queued DOM changes_
-    - _Geometry properties: `[offset|scroll|client]-[Top|Left|Width|Height]`_ [[article]](https://javascript.info/size-and-scroll#geometry)
-  - Batch style reads and do them first [[article]](https://developers.google.com/web/fundamentals/performance/rendering/avoid-large-complex-layouts-and-layout-thrashing#avoid_forced_synchronous_layouts)
-
-## Build Tools/Process
-
-### Babel
-
-plugins, presets (`@babel/preset-env`, `@babel/preset-react`, etc.)
-
-#### `@babel/preset-env`
-
-- polyfill (`core-js` + `regenerator-runtime`): `{ "useBuiltIns": "usage"|"entry", "corejs": "3.x" }` [[GitHub]](https://github.com/zloirock/core-js#babel)
-- `@babel/runtime` + `@babel/plugin-transform-runtime` (transforms built-ins to imports -> no global namespace pollution)
-- Always use `{ "modules": false }` (keeping ESM syntax) when used with webpack
-
-### CSS Processing
-
-- Preprocessors - Sass, LESS, etc.
-  - _programmability, code reuse, code organization_ (variables, mixins, functions, modules, etc),
-  - _readability_ (e.g. nested rules)
-- PostCSS plugins: Autoprefixer [[GitHub]](https://github.com/postcss/autoprefixer), postcss-preset-env [[GitHub]](https://github.com/csstools/postcss-preset-env), CSS Modules [[GitHub]](https://github.com/css-modules/css-modules), stylelint [[docs]](https://stylelint.io/)
-
-### Webpack [[docs](https://webpack.js.org/configuration)]
-
-#### Initialize using config file and command-line args, apply plugins
-
-- Use `webpack.[common|prod|dev].js` and webpack-merge [[GitHub]](https://github.com/survivejs/webpack-merge)
-- **Plugins**: _tapping into the entire compilation lifecycle, using hooks provided by `Tapable`'s [[GitHub]](https://github.com/webpack/tapable)_
-
-#### Find entries (`entry`), resolve module, resolve loader
-
-- `(resolve|resolveLoader).alias|modules|mainFields|mainFiles|extensions` [[docs]](https://webpack.js.org/concepts/module-resolution/#module-paths)
-
-#### Load module, parse and find dependencies, recurse for each dependency
-
-- **Loaders**: _transformations that are applied to the source code of a module_ - _transpilation, linting (代码校验)_
-  - Scripts - _eslint-loader -> babel-loader (`cacheDirectory` [[docs]](https://github.com/babel/babel-loader))_
-  - Stylesheets - _sass-loader/less-loader/postcss-loader -> css-loader -> style-loader_
-  - Images - _url-loader (base64-encode small images) -> file-loader_
-  - Vue (single-file components) - _vue-loader_
-  - _thread-loader_ - multiple parallel (并行) node.js processes [[docs]](https://webpack.js.org/loaders/thread-loader/) (alternative to _HappyPack plugin_ [[GitHub]](https://github.com/amireh/happypack))
-- `module.noParse` [[docs]](https://webpack.js.org/guides/shimming/#other-utilities)
-- IgnorePlugin (Ignore `import`/`require` requests) [[docs]](https://webpack.js.org/plugins/ignore-plugin/)
-- DllPlugin/DllReferencePlugin (动态链接库): [[docs]](https://webpack.js.org/plugins/dll-plugin/) [[example: DllPlugin]](https://github.com/webpack/webpack/tree/master/examples/dll), [[example: DllReferencePlugin]](https://github.com/webpack/webpack/tree/master/examples/dll-user)
-
-#### Traverse the dependency graph, group modules into chunks and optimize (with plugins)
-
-- **Code splitting** (代码分割)
-  - Multiple entries, `output.filename = '[name].bundle.js'`
-  - `import()`, `output.chunkFilename = '[name].bundle.js'`
-  - `optimization.splitChunks` [[defaults]](https://webpack.js.org/plugins/split-chunks-plugin/#optimizationsplitchunks) (by default only for async chunks)
-  - MiniCSSExtractPlugin [[docs]](https://webpack.js.org/plugins/mini-css-extract-plugin/), OptimizeCssAssetsPlugin [[docs]](https://webpack.js.org/plugins/mini-css-extract-plugin/#minimizing-for-production)
-- **Use `mode: 'production'` (v4+) activates built-in optimizations**
-  - Sets `process.env.NODE_ENV: 'production'` using DefinePlugin [[docs]](https://webpack.js.org/guides/production/#specify-the-mode), dead code gets removed during minification
-  - `optimization.minimize: true` - **Minification** using TerserPlugin (_default `parallel: true`_) [[docs]](https://github.com/webpack-contrib/terser-webpack-plugin#parallel)
-  - `optimization.usedExports: true` - **Tree shaking** [[docs]](https://webpack.js.org/guides/tree-shaking/#conclusion)
-  - `optimization.concatenateModules: true` - **Module concatenation ('scope hoisting')** (模块合并) [[docs]](https://webpack.js.org/plugins/module-concatenation-plugin)
-    - **NOTE**: Both tree shaking and module concatenation depend on the _static structure of ES2015 module syntax_.
-      - Disable transformation of ES modules syntax in Babel
-      - Prioritize `'module`/`jsnext:main'` [[article]](https://github.com/rollup/rollup/wiki/pkg.module) in `resolve.mainFields`
-
-#### Generate code and output file for each chunk
-
-- HtmlWebpackPlugin [[docs]](https://github.com/jantimon/html-webpack-plugin#options), CleanWebpackPlugin [[docs]](https://www.npmjs.com/package/clean-webpack-plugin)
-- Use `[contenthash]` in `output.filename|chunkFilename` for caching
-- Set `output.publicPath` and url-loader/file-loader's `publicPath` to CDN.
-- webpack-dev-server (no output, serves bundles from memory)
-  - `devServer.liveReload` (true by default) -> state is lost
-  - `devServer.hot = true` - > Hot Module Replacement
-    - Needs to implement `module.hot.accept`, otherwise falls back to Live Reload [[docs]](https://webpack.js.org/api/hot-module-replacement/#accept)
-  - `devServer.proxy` [[docs]](https://webpack.js.org/configuration/dev-server/#devserverproxy)
-
-### Prepack [[GitHub]](https://github.com/facebook/prepack)
-
-A partial evaluator for JavaScript. Eliminates computations that can be done at compile time.
-
-# Appendix: CS Fundamentals
-
-## Algorithms
 
 ### Graph, Tree Traversal
 
@@ -1434,10 +1247,3 @@ function bubbleSort(nums) {
   return nums;
 }
 ```
-
-## OO Design Patterns
-
-> - Software entities should be open for extension, but closed for modification. (open-closed principle)
-> - Depend upon _abstractions_, not _concretions_. (dependency inversion principle)
-> - Program to an _interface_, not an _implementation_.
-> - Favor _object composition_ over _class inheritance_, because inheritance breaks encapsulation
