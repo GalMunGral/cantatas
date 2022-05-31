@@ -396,24 +396,6 @@ function runGenerator(generator) {
   }
   ```
 
-class jQuery {
-constructor(selector) {
-const elements = document.querySelectorAll(selector);
-for (let i = 0; i < elements.length; i++) {
-this[i] = elements[i];
-}
-this.length = elements.length;
-}
-each(fn) {
-for (let i = 0; i < this.length; i++) {
-fn(this[i]);
-}
-}
-on(evt, fn) {
-this.each((el) => el.addEventListener(evt, fn));
-}
-}
-
 ### Routing - locating views via URL
 
 - URL hash - meant for same-page navigation (jump to `id`)
@@ -635,40 +617,10 @@ function Tree({ data }) {
 - `store.commit(mutationType, payload)`, `store.dispatch(actionType, payload)`
 - component binding helpers: [`mapState`](https://vuex.vuejs.org/guide/state.html#the-mapstate-helper), [`mapGetters`](https://vuex.vuejs.org/guide/getters.html#the-mapgetters-helper), [`mapMutations`](https://vuex.vuejs.org/guide/mutations.html#committing-mutations-in-components), [`mapAction`](https://vuex.vuejs.org/guide/actions.html#dispatching-actions-in-components)
 
-  - **Binary framing layer** (二进制分帧层) - faster parsing than text-based
-  - **Header compression** [[spec]](https://tools.ietf.org/html/rfc7541#section-6)
-  - **Multiplexing** (多路复用) (streams, messages, frames) - _concurrency solves HOL in HTTP_, but TCP still has HOL [[article]](https://community.akamai.com/customers/s/article/How-does-HTTP-2-solve-the-Head-of-Line-blocking-HOL-issue?language=en_US)
-  - **Stream prioritization** (weight and dependency)
-  - **Flow control** (流量控制)
-  - **Server push** (to HTTP cache) - replaces assets inlining (JS, CSS, images data URL)
-
-- HTTP/3: uses UDP, QUIC
-
-#### Methods
-
-- GET/PUT/DELTE are _idempotent_ (幂等), POST is not (`POST /collection` v.s. `PUT /collection/12345`) [[StackOverflow]](https://stackoverflow.com/a/45019073)
-- OPTIONS (check allowed request methods, CORS preflight), CONNECT (HTTP tunneling, forward _TCP_ connection)
-
-- _400 Bad Request (e.g. request syntax error), 401 Unauthorized, 403 Forbidden (e.g. not authorized), 404 Not Found_
-- _500 Internal Server Error, 502 Bad Gateway, 504 Gateway Timeout_
-
-#### Headers [[MDN]](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)
-
-- **Context, Content, Range, Redirect**: `Date`, `From` (email address), `Host`, `Referer`, `User-Agent`, `Accept` (content type), `Accept-Charset`, `Accept-Encoding` (compression), `Accept-Language`, `Range`, `Server`, `Accept-Ranges` (server), `Content-Length`, `Content-Type`, `Content-Encoding`, `Content-Language`, `Content-Range`, `Location` (redirects)\*
-- **Caching**: `Cache-Control`, `Expires`, `Last-Modified`, `ETag`, `If-(None)-Match`, `If-(Un)Modified-Since`, `Age` (proxy cache)
-  - `Cache-Control`: `public`, `private`, `no-cache` (always validate), `no-store`, `max-age=<seconds>`, `s-maxage=<seconds>`
-  - 301 cacheable by default, 302/307 not cacheable unless `Cache-Control`/`Expires` is set
-  - Chrome: Blink in-memory cache [[doc]](https://developer.chrome.com/extensions/webRequest#caching) [[StackOverflow]](https://stackoverflow.com/questions/52950068/what-does-blink-in-memory-cache-store) -> service worker `cache.match(event.request)` -> disk cache
-- **Cookies**: `Cookie`, `Set-Cookie` [[MDN]](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie)
-  - Attributes: `Expires`, `Max-Age`, `Domain`, `Path`, `Secure` (only over HTTPS), `HttpOnly` (not exposed to JS), `SameSite` (prevent CSRF)
-  - Store state on client side -> cookie, on server side -> session + session ID cookie
-- **CORS**: `Origin`, `Access-Control-Request-Headers|Method`, `Access-Control-Allow-Origin|Credentials|Headers|Methods`
-  - **Same-origin policy (protocol, host, port)**
-    - JSONP, reverse proxy
-    - Set `document.domain = <superdomain>` (automatically sets port to null) on both parent and child frames to enable access
-    - `targetWindow.postMessage(message, targetOrigin)` - sent only if `targetOrigin` matches the origin of `targetWindow` (or `*`).
+  - `targetWindow.postMessage(message, targetOrigin)` - sent only if `targetOrigin` matches the origin of `targetWindow` (or `*`).
   - Simple requests [[MDN]](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Simple_requests): `Origin` -> `Access-Control-Allow-Origin`
   - Preflighted: `OPTIONS` + `Access-Control-Request-*` -> `Access-Control-Allow-*` -> request
+
 - **Authentication**: `WWW-Authenticate`, `Authorization`
   - HTTP Basic Authentication
     - 401 Unauthorized + `WWW-Authenticate: Basic` (browser automatically prompts for credentials)
