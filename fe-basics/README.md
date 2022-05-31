@@ -659,13 +659,13 @@ function Tree({ data }) {
   - Client verifies server certificate using CA public key, sends "premaster secret" encrypted with server public key, server decrypts.
   - Client and server both generate session keys and send an encrypted "finished" messages to each other.
 
-- HTTP/2 [[article]](https://hpbn.co/http2/)
   - **Binary framing layer** (二进制分帧层) - faster parsing than text-based
   - **Header compression** [[spec]](https://tools.ietf.org/html/rfc7541#section-6)
   - **Multiplexing** (多路复用) (streams, messages, frames) - _concurrency solves HOL in HTTP_, but TCP still has HOL [[article]](https://community.akamai.com/customers/s/article/How-does-HTTP-2-solve-the-Head-of-Line-blocking-HOL-issue?language=en_US)
   - **Stream prioritization** (weight and dependency)
   - **Flow control** (流量控制)
   - **Server push** (to HTTP cache) - replaces assets inlining (JS, CSS, images data URL)
+
 - HTTP/3: uses UDP, QUIC
 
 #### Methods
@@ -673,11 +673,6 @@ function Tree({ data }) {
 - GET/PUT/DELTE are _idempotent_ (幂等), POST is not (`POST /collection` v.s. `PUT /collection/12345`) [[StackOverflow]](https://stackoverflow.com/a/45019073)
 - OPTIONS (check allowed request methods, CORS preflight), CONNECT (HTTP tunneling, forward _TCP_ connection)
 
-#### Status Codes
-
-_1xx (informational) ,2xx (successful), 3xx (redirects), 4xx (client errors), 5xx (server errors)_
-
-- _200 OK, 301 Moved Permanently, 302 Found (Moved Temporarily), 304 Not Modified, 307 Temporary Redirect_
 - _400 Bad Request (e.g. request syntax error), 401 Unauthorized, 403 Forbidden (e.g. not authorized), 404 Not Found_
 - _500 Internal Server Error, 502 Bad Gateway, 504 Gateway Timeout_
 
@@ -736,105 +731,6 @@ _1xx (informational) ,2xx (successful), 3xx (redirects), 4xx (client errors), 5x
   Connection: Upgrade
   Sec-WebSocket-Accept: base64(sha1(<Sec-WebSocket-Key> + "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"))
   ```
-
-#### XMLHttpRequest
-
-- `progress` event (upload, download) - `e.loaded`, `e.total`
-- `XMLHttpRequest.abort`, `abort` event
-
-```js
-function post(url, data = null) {
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest(); // 0 - UNSENT
-    xhr.open("POST", "/api", true); // 1 - OPENED
-    xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState == 4) {
-        if (xhr.status >= 200 && xhr.status < 300) {
-          resolve(JSON.parse(xhr.responseText));
-        } else {
-          reject(xhr.statusText);
-        }
-      }
-    };
-    xhr.send(JSON.stringify(data)); // 2 - HEADERS_RECEIVED, 3 - LOADING, 4 - DONE
-  });
-}
-```
-
-#### Fetch
-
-- Promise-based, can't track request progression
-
-```js
-const controller = new AbortController();
-const signal = controller.signal;
-fetch(url, { signal }).catch((e) => {
-  if (e.name == "AbortError") {
-    console.log(e.message);
-  } else {
-    throw e;
-  }
-});
-controller.abort();
-```
-
-```js
-function myFetch(url) {
-  return fetch(...arguments).then((res) =>
-    res.ok ? res : Promise.reject(res)
-  );
-}
-```
-
-_config -> request interceptors -> request transformers -> [adapter](https://github.com/axios/axios/tree/master/lib/adapters#axios--adapters) -> response transformers -> response interceptors -> response/error_
-
-```js
-// https://github.com/axios/axios#request-config
-axios({
-  method,
-  url,
-  baseURL,
-  params,
-  paramsSerializer,
-  headers,
-  data,
-  responseType,
-  transformRequest,
-  transformResponse,
-  timeout,
-  validateStatus,
-  cancelToken,
-  onUploadProgress,
-  onDownloadProgress,
-  auth,
-  proxy,
-  withCredentials,
-  xsrfCookieName,
-  xsrfHeaderName,
-});
-```
-
-- **Defaults** [[Source Code]](https://github.com/axios/axios/blob/master/lib/defaults.js)
-  - `adapter`: Uses `XMLHttpRequest` for browser, `http.ClientRequest` for Node.js
-  - `transformRequest`: Transform data and set `Content-Type` header based on type of data
-  - `transformResponse`: Try to parse data as JSON if it's string
-  - `validateStatus`: Reject promise if status is not 2xx
-  - `xsrfCookieName`, `xsrfHeaderName`: Built-in XSRF prevention
-- **`axios(config)`**, `axios.request(config)`, `axios(url, config)` (GET)
-- **`axios.get|delete|head|options(url, config)`**, **`axios.post|put|patch(url, data, config)`**
-- **`instance = axios.create(config)`**, **`instance.<methods>(...)`**
-- **`axios.defaults.<option>`**, **`instance.defaults.<option>`**
-- **`axios.interceptors.request|response.use(config|response => {}, error => {})`**
-
-1. **Origin and Importance**: _user agent -> user -> author -> author important -> user important -> user-agent important_ [[MDN]](https://developer.mozilla.org/en-US/docs/Web/CSS/Cascade#Cascading_order)
-2. **Specificity**: _inline ? -> # ID selectors -> # class/attribute selectors, pseudo-classes -> # element selectors, pseudo-elements_
-3. **Source Order**: Later rules overrides earlier ones
-
-### Inheritance
-
-- Inherited properties (mostly related to text and speech): [[StackOverflow]](https://stackoverflow.com/a/5612360/10827418)
-- **NOTE**: `line-height` inheritance: _lengths, unitless numbers_ use original value, _percentages_ use _computed value_.
 
 ### Absolute positioning
 
