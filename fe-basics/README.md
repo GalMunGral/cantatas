@@ -396,35 +396,23 @@ function runGenerator(generator) {
   }
   ```
 
-### [Node](https://developer.mozilla.org/en-US/docs/Web/API/Node), [ParentNode](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode), [ChildNode](https://developer.mozilla.org/en-US/docs/Web/API/ChildNode), [Element](https://developer.mozilla.org/en-US/docs/Web/API/Element), [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement)
-
-- `Node` interface:
-  - `nodeType`: 1 (ELEMENT_NODE), 3 (TEXT_NODE), 8 (COMMENT_NODE), 9 (DOCUMENT_NODE)
-  - `appendChild`, `removeChild`, `replaceChild(new, old)`, `insertBefore(new, ref)`, `cloneNode(deep = false)`
-- `Document` interface:
-  - `createElement`, `createTextNode`, `createAttribute`, `createComment`, `createDocumentFragment`
-  - `forms`, `getElementById`, `getElementsByTagName`, `getElementsByClassName`, `getElementsByName`, `querySelector`, `querySelectorAll`
-    > `document.getElementsByTagName('*')` returns all elements
-
-```js
 class jQuery {
-  constructor(selector) {
-    const elements = document.querySelectorAll(selector);
-    for (let i = 0; i < elements.length; i++) {
-      this[i] = elements[i];
-    }
-    this.length = elements.length;
-  }
-  each(fn) {
-    for (let i = 0; i < this.length; i++) {
-      fn(this[i]);
-    }
-  }
-  on(evt, fn) {
-    this.each((el) => el.addEventListener(evt, fn));
-  }
+constructor(selector) {
+const elements = document.querySelectorAll(selector);
+for (let i = 0; i < elements.length; i++) {
+this[i] = elements[i];
 }
-```
+this.length = elements.length;
+}
+each(fn) {
+for (let i = 0; i < this.length; i++) {
+fn(this[i]);
+}
+}
+on(evt, fn) {
+this.each((el) => el.addEventListener(evt, fn));
+}
+}
 
 ### Routing - locating views via URL
 
@@ -652,8 +640,6 @@ function Tree({ data }) {
 - `new VueRouter({ mode: 'hash'|'history'|'abstract', routes: [ { path: '/some/path/:id', component: A|() => import('./b')} ] })`
 - `<router-link to="/path">`, `<router-view>`, `this.$route.params.id`, `this.$router.push|replace|go`
 
-## HTTP
-
 ### Data Link, Network, Transport, Session Layers
 
 - Switch - data link layer, MAC address
@@ -667,20 +653,12 @@ function Tree({ data }) {
   - **Flow Control**: window size header
   - **Congestion Control**: slow-start, congestion avoidance, fast retransmit (3 duplicate ACKs), fast recovery (TCP Reno skips slow start)
 - TLS (RSA) handshake [[article]](https://www.cloudflare.com/learning/ssl/what-happens-in-a-tls-handshake/):
+
   - "client hello" (supported TLS version/cipher suites, "client random")
   - "server hello" (selected version/cipher suite, "server random", server SSL certificate with server public key and CA signature)
   - Client verifies server certificate using CA public key, sends "premaster secret" encrypted with server public key, server decrypts.
   - Client and server both generate session keys and send an encrypted "finished" messages to each other.
 
-#### Versions
-
-- HTTP/1.0
-  - Cannot reuse TCP connection unless `Connection: keep-alive`.
-  - Parallel requests suffer **head-of-line blocking** (HOL, 队头阻塞) due to limit of 6 connections per hostname
-- HTTP/1.1
-  - Uses **persistent connection** (长连接) by default, thus avoids the overhead of TCP handshake and slow start
-  - Within one connection each request needs to wait until previous response is received -> HOL.
-  - **Pipelining** (管线化) - no waiting for responses, but responses still need to be processed in order -> still HOL
 - HTTP/2 [[article]](https://hpbn.co/http2/)
   - **Binary framing layer** (二进制分帧层) - faster parsing than text-based
   - **Header compression** [[spec]](https://tools.ietf.org/html/rfc7541#section-6)
@@ -745,8 +723,6 @@ _1xx (informational) ,2xx (successful), 3xx (redirects), 4xx (client errors), 5x
   - **Clickjacking** (点击劫持): hidden iframe (bottom + `pointer-events: none`, top + transparent)
     - `Content-Security-Policy: frame-ancestors 'none'|'self'|<source>`, `X-Frame-Options: DENY|SAMEORIGIN`
     - `SameSite=Strict|Lax` cookies are not sent when loading frames (cross-site subrequest)
-
-- **WebSocket Handshake** [[MDN]](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_servers)
 
   ```
   GET /chat HTTP/1.1
