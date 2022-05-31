@@ -635,13 +635,6 @@ function Tree({ data }) {
 - `store.commit(mutationType, payload)`, `store.dispatch(actionType, payload)`
 - component binding helpers: [`mapState`](https://vuex.vuejs.org/guide/state.html#the-mapstate-helper), [`mapGetters`](https://vuex.vuejs.org/guide/getters.html#the-mapgetters-helper), [`mapMutations`](https://vuex.vuejs.org/guide/mutations.html#committing-mutations-in-components), [`mapAction`](https://vuex.vuejs.org/guide/actions.html#dispatching-actions-in-components)
 
-- TLS (RSA) handshake [[article]](https://www.cloudflare.com/learning/ssl/what-happens-in-a-tls-handshake/):
-
-  - "client hello" (supported TLS version/cipher suites, "client random")
-  - "server hello" (selected version/cipher suite, "server random", server SSL certificate with server public key and CA signature)
-  - Client verifies server certificate using CA public key, sends "premaster secret" encrypted with server public key, server decrypts.
-  - Client and server both generate session keys and send an encrypted "finished" messages to each other.
-
   - **Binary framing layer** (二进制分帧层) - faster parsing than text-based
   - **Header compression** [[spec]](https://tools.ietf.org/html/rfc7541#section-6)
   - **Multiplexing** (多路复用) (streams, messages, frames) - _concurrency solves HOL in HTTP_, but TCP still has HOL [[article]](https://community.akamai.com/customers/s/article/How-does-HTTP-2-solve-the-Head-of-Line-blocking-HOL-issue?language=en_US)
@@ -709,10 +702,6 @@ function Tree({ data }) {
 - `width|height: auto` will be set to _shrink-to-fit_
 - `display` will be implicitly set to `block`
 
-### Centering
-
-- Block-level (horizontal): **`margin: auto`** (self)
-- Inline: **`line-height: <height>` + `text-align: center`** (parent)
 - Abosolute positioning (`position: absolute`, parent `position: relative`)
   - **`left|right: 0`** (any fixed number) + **`top|bottom: 0`** (any fixed number) + **`margin: auto`** [[W3C spec]](https://drafts.csswg.org/css-position/#abspos-margins)
   - **`left: 50%; top: 50%`** + **`transform: translate(-50%, -50%)`**
