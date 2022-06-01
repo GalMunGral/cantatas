@@ -86,35 +86,6 @@ function deepClone(obj) {
   - Without `y`, `g` flags: same as `String.prototype.match`
   - Otherwise is stateful (`lastIndex`), can be called repeatedly to iterate over all matches.
 
-- Reference counting (引用计数法), Tracing (mark-and-sweep (标记清除法), stop-and-copy, etc.)
-- V8 GC: _most objects die young (generational hypothesis)_. [[official blog]](https://v8.dev/blog/free-garbage-collection#deep-dive-into-v8%E2%80%99s-garbage-collection-engine)
-  - Young generation (新生代): **Scavenge - [semi-space (stop-and-copy)](https://www.memorymanagement.org/glossary/t.html#term-two-space-collector)**
-  - Old generation (老生代): **[mark-and-sweep](https://www.memorymanagement.org/glossary/m.html#term-mark-sweep)** - incremental marking steps (~5ms), concurrent sweeper threads, [compaction (压缩)](https://www.memorymanagement.org/glossary/c.html#term-compaction)
-  - Scheduled as idle tasks (e.g. after rendering and before vsync)
-- Causes of memory leaks
-
-  - Reference counting + reference cycles.
-  - Global variables (accidental or intentional) - always reachable (GC root is the global object)
-  - Internal references: event listeners, `setInterval`, recursive `setTimeout` [[article]](https://javascript.info/settimeout-setinterval)
-    - Use `clearTimeout(id)`, `clearInterval(id)`, `removeEventListener(fn)`,
-  - Closure do not cause memory leak, unless deoptimized (e.g. by using `eval`) [[article]](https://www.smartik.net/2017/03/browsers-closures-optimization-avoiding-memory-leaks.html)
-  - Problematic closure implemenation by JS engines - e.g. multiple closures sharing a parent scope [[article]](https://auth0.com/blog/four-types-of-leaks-in-your-javascript-code-and-how-to-get-rid-of-them)
-
-  ```js
-  var f = (function () {
-    var a = "some potentially very large data";
-    return function () {};
-  })(); // <- The entire function scope is optimized away
-
-  var g = (function () {
-    var a = "some potentially very large data";
-    function b() {
-      console.log(a);
-    }
-    return function () {};
-  })(); // <- `b` is optimized away, but `a` survives because it's referenced by `b`!
-  ```
-
 #### Node.js Event Loop - libuv
 
 - Uses kernel API for I/O event notifications (e.g. [`epoll`](https://en.wikipedia.org/wiki/Epoll) on Linux) [[Youtube]](https://www.youtube.com/watch?v=P9csgxBgaZ8)
