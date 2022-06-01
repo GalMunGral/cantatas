@@ -85,38 +85,7 @@ function deepClone(obj) {
   - Without `y`, `g` flags: same as `String.prototype.match`
   - Otherwise is stateful (`lastIndex`), can be called repeatedly to iterate over all matches.
 
-## Execution Context, Lexical Scope, Closure, `this` Binding [[spec]](https://es5.github.io/#x10.3)
-
-Related: Closure in Scheme (with diagrams) [[SICP]](https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book-Z-H-21.html#%_sec_3.2)
-
 ```js
-// Loop + `setTimeout` without using `let`
-for (var i = 0; i < 5; i++) {
-  setTimeout((j) => console.log(j), 1000, i);
-}
-
-for (var i = 0; i < 5; i++) {
-  (function (j) {
-    setTimeout(() => console.log(j), 1000);
-  })(i);
-}
-
-for (var i = 0; i < 5; i++) {
-  (function () {
-    var j = i;
-    setTimeout(() => console.log(j), 1000);
-  })();
-}
-```
-
-```js
-Function.prototype._bind = function (thisArg, ...args) {
-  const fn = this;
-  return function () {
-    return fn.call(thisArg, ...args, ...arguments);
-  };
-};
-
 const key = Symbol();
 Function.prototype._call = function (thisArg, ...args) {
   const fn = this;
@@ -128,63 +97,53 @@ Function.prototype._call = function (thisArg, ...args) {
 };
 ```
 
-- l-value and r-value [[WP]](https://en.wikipedia.org/wiki/Value_(computer_science)#lrvalue)
-- Evaluation of `try-catch-finally`: [[spec]](http://www.ecma-international.org/ecma-262/11.0/index.html#sec-try-statement-runtime-semantics-evaluation)
-- `eval` uses local scope if called explicitly, otherwise uses global scope.
-- `with` uses prototype chain for name resolution [[spec]](http://www.ecma-international.org/ecma-262/11.0/index.html#sec-with-statement-runtime-semantics-evaluation)
-- `this` **always** points to `window` in the global execution context [(spec)](http://es5.github.io/#x10.2.3) and `setTimeout`/`setInterval` callbacks.
-- Use arrow functions in constructor functions or public class fields to "bind" `this` (use lexical `this`).
-- Application of closures
+- Currying (converts function of arity n to functions of arity 1)
+- Partial application (i.e. `bind`, reduces arity)
+- Private variables (constructor functions)
+- Module systems, singleton
 
-  - Currying (converts function of arity n to functions of arity 1)
-  - Partial application (i.e. `bind`, reduces arity)
-  - Private variables (constructor functions)
-  - Module systems, singleton
+  ```html
+  <head>
+    <style>
+      #modal {
+        width: 400px;
+        height: 400px;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        background: gray;
+        line-height: 400px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="open">open</button>
+    <button id="close">close</button>
+    <script>
+      const getModal = (() => {
+        let modal;
+        return () => {
+          if (!modal) {
+            modal = document.createElement("div");
+            modal.id = "modal";
+            modal.textContent = "Modal Test";
+            document.body.append(modal);
+          }
+          return modal;
+        };
+      })();
 
-    ```html
-    <head>
-      <style>
-        #modal {
-          width: 400px;
-          height: 400px;
-          position: fixed;
-          top: 0;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          margin: auto;
-          background: gray;
-          line-height: 400px;
-          text-align: center;
-        }
-      </style>
-    </head>
-    <body>
-      <button id="open">open</button>
-      <button id="close">close</button>
-      <script>
-        const getModal = (() => {
-          let modal;
-          return () => {
-            if (!modal) {
-              modal = document.createElement("div");
-              modal.id = "modal";
-              modal.textContent = "Modal Test";
-              document.body.append(modal);
-            }
-            return modal;
-          };
-        })();
-
-        document.getElementById("open").onclick = () =>
-          (getModal().style.display = "block");
-        document.getElementById("close").onclick = () =>
-          (getModal().style.display = "none");
-      </script>
-    </body>
-    ```
-
-## Garbage Collection
+      document.getElementById("open").onclick = () =>
+        (getModal().style.display = "block");
+      document.getElementById("close").onclick = () =>
+        (getModal().style.display = "none");
+    </script>
+  </body>
+  ```
 
 - Reference counting (引用计数法), Tracing (mark-and-sweep (标记清除法), stop-and-copy, etc.)
 - V8 GC: _most objects die young (generational hypothesis)_. [[official blog]](https://v8.dev/blog/free-garbage-collection#deep-dive-into-v8%E2%80%99s-garbage-collection-engine)
@@ -215,15 +174,6 @@ Function.prototype._call = function (thisArg, ...args) {
   })(); // <- `b` is optimized away, but `a` survives because it's referenced by `b`!
   ```
 
-## Asynchronicity
-
-### Operating System
-
-- Threads: represented by [TCB](https://en.wikipedia.org/wiki/Thread_control_block), have separate stack pointer, program counter, registers but share memory, file descriptor table.
-- Processes: virtual memory, IPC [[WP]](https://en.wikipedia.org/wiki/Inter-process_communication)
-  - Network socket, Unix domain socket
-  - Message queue, anonymous pipe, named pipe
-  - File, Shared memory, memory-mapped file
   - (Unix) Signal (SIGTERM, etc.)
 
 #### Node.js Event Loop - libuv
@@ -616,36 +566,6 @@ function Tree({ data }) {
 - `new Vuex.Store({ state, getters, mutations, actions, modules })`
 - `store.commit(mutationType, payload)`, `store.dispatch(actionType, payload)`
 - component binding helpers: [`mapState`](https://vuex.vuejs.org/guide/state.html#the-mapstate-helper), [`mapGetters`](https://vuex.vuejs.org/guide/getters.html#the-mapgetters-helper), [`mapMutations`](https://vuex.vuejs.org/guide/mutations.html#committing-mutations-in-components), [`mapAction`](https://vuex.vuejs.org/guide/actions.html#dispatching-actions-in-components)
-
-  - `targetWindow.postMessage(message, targetOrigin)` - sent only if `targetOrigin` matches the origin of `targetWindow` (or `*`).
-  - Simple requests [[MDN]](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#Simple_requests): `Origin` -> `Access-Control-Allow-Origin`
-  - Preflighted: `OPTIONS` + `Access-Control-Request-*` -> `Access-Control-Allow-*` -> request
-
-- **Authentication**: `WWW-Authenticate`, `Authorization`
-  - HTTP Basic Authentication
-    - 401 Unauthorized + `WWW-Authenticate: Basic` (browser automatically prompts for credentials)
-    - `Authorization: Basic base64(<username>:<password>)` sent every time.
-  - Session & Cookie: Log in with username/password -> session -> session ID cookie.
-    > To send credential (cookies, basic auth), set `XMLHttpRequest.withCredentials = true` or use `{ credentials: 'include' }` with fetch.
-  - Token-based authentication - stateless (no session), scalable
-    - Login with username/password -> server issues _signed_ JWT -> saved in `localStorage`/`sessionStorage`
-    - Client _explicitly_ attaches `Authorization: Bearer <JWT token>` to every request -> _prevents CSRF_
-    - Server validate signature, check _scopes (permissions)_
-  - OAuth (开放授权) 2.0 -> OpenID Connect [[spec]](https://openid.net/specs/openid-connect-core-1_0.html#Authentication)
-- **Security**: `Content-Security-Policy`, `X-Frame-Options`
-
-  - **CSRF** (跨站请求伪造): exploits authentication automatically provided by browser (cookie, basic auth, etc)
-    - Set cookie attribute `SameSite=Strict`
-    - Send CSRF token with requests, validate token on server
-      - `<input type="hidden" name="csrf-token" value="<csrf-token>">`
-      - Set CSRF cookie -> send CSRF token in _custom header_ (cross-origin will need preflight)
-    - _XSS defeats all CSRF preventions_
-  - **XSS** (跨站脚本攻击): injects inline scripts
-    - Sanitize input characters (also applies to SQL injection, OS command injection, etc.)
-    - Block all inline scripts `Content-Security-Policy: script-src 'self' <source> ...` [[MDN]](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src)
-  - **Clickjacking** (点击劫持): hidden iframe (bottom + `pointer-events: none`, top + transparent)
-    - `Content-Security-Policy: frame-ancestors 'none'|'self'|<source>`, `X-Frame-Options: DENY|SAMEORIGIN`
-    - `SameSite=Strict|Lax` cookies are not sent when loading frames (cross-site subrequest)
 
 ### Absolute positioning
 
