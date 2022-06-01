@@ -115,8 +115,6 @@ function deepClone(obj) {
   })(); // <- `b` is optimized away, but `a` survives because it's referenced by `b`!
   ```
 
-  - (Unix) Signal (SIGTERM, etc.)
-
 #### Node.js Event Loop - libuv
 
 - Uses kernel API for I/O event notifications (e.g. [`epoll`](https://en.wikipedia.org/wiki/Epoll) on Linux) [[Youtube]](https://www.youtube.com/watch?v=P9csgxBgaZ8)
