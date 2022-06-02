@@ -1,26 +1,3 @@
-- **[Block formatting context (BFC)](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context)**
-  - Created by setting _`float`,`position` (`absolute`, `fixed`), `overflow` (not `visible`), `display` (`flow-root`, `inline-block`)_
-  - Usage: _contain internal floats (**"clearfix"**), exclude external floats, suppress [margin collapsing](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing)_
-    ```css
-    /* 1 - Create new BFC */
-    .clearfix {
-      overflow: hidden;
-    }
-    .clearfix {
-      display: flow-root;
-    }
-    /* 2 - Pseudo-element */
-    .clearfix::after {
-      content: "";
-      display: block;
-      clear: both;
-    }
-    ```
-
-`initial` (`0 1 auto`), `auto` (`1 1 auto`), `none` (`0 0 auto`)
-
-### Float 3-Column Layout
-
 ```html
 <!-- 圣杯布局 -->
 <div id="header"></div>
