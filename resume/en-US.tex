@@ -4,98 +4,93 @@
 \usepackage{enumitem}
 \usepackage{blindtext}
 \usepackage[T1]{fontenc}
+\usepackage{fontspec}
 
 \titleformat{\section}{}{\thesection}{0pt}{\vspace{0pt}}[{\titlerule[0.1pt]}]
-\setlist[itemize]{leftmargin=2em, topsep=0.5em, itemsep=0pt, label=$\lambda$}
+\setlist[itemize]{leftmargin=2em, topsep=0.5em, itemsep=0pt, label=$+$}
 \setlength\parindent{0pt}
 \pagestyle{empty}
 
 \begin{document}
-
+\setmainfont{CMU Typewriter Text}
 {\bf\huge Wenqi He} \hfill (+1)470-343-5207 | hewenqi96@gmail.com
 
 \section*{Experience}
-\textbf{Frontend Software Engineer, Gllue Software, Shanghai} \hfill 2020/11 -- 2021/11
+\textbf{Frontend Engineer, Gllue Software}, Shanghai, China \hfill 2020/11 -- 2022/03
 \begin{itemize}
-\item Developed main features of multiple web applications and WeChat mini-programs using TypeScript and React.
-\item Participated in the maintenance of the company's XML-based user interface builder. 
-\item Developed a light-weight form engine and image generation service (Node.js) for mini-programs.
-\item Responsible for the front-end integration of the company's identity service, using OAuth 2.0 in certain scenarios.
-\item Used Redux Saga, SWR, ECharts, Linaria, Sass/LESS, Tailwind, Vite/webpack/Rollup/Parcel, GitLab, ArgoCD.
+\item Developed Web applications and WeChat mini-programs using React and TypeScript.
+\item Designed and developed a view layout system on canvas to support in-app screenshots.
+\item Developed features for a UI builder framework,  a JSON form engine, and an image-rendering service.
+\item Built a light-weight HTML5 encrypted video streaming player to prevent downloads.
+\item Participated in the development and integration of an OAuth 2.0 identity service.
+\item Maintained online documentations using TypeDoc, GitLab, Docker and ArgoCD.
 \end{itemize}
 
 \vspace{0.5em}
-\textbf{Electron Developer, Étude (\texttt{etudereader.com}), Atlanta} \hfill 2019/09 -- 2020/03
+\textbf{Electron Developer, Étude}, Atlanta, GA \hfill 2019/09 -- 2020/03
 \begin{itemize}
-\item Built features such as parsing table of contents from raw text, persistent word highlighting, etc.
+\item Built features such as table of contents parser, persistent word highlighting, etc.
 \end{itemize}
 
 \vspace{0.5em}
-\textbf{Part-time Web Developer, Georgia Institute of Technology, Atlanta} \hfill 2019/08 -- 2019/12
+\textbf{Web Developer, Georgia Institute of Technology}, Atlanta, GA \hfill 2019/08 -- 2019/12
 \begin{itemize}
-\item Participated in the development of the mid-term survey system. Implemented the JSON form feature.
-\item Mainly used MongoDB, ajv, TypeScript, Angular, Express, Node.js, Puppeteer.
+\item Participated in the development of the MEAN-stack mid-term survey application.
 \end{itemize}
-
-\vspace{0.5em}
-\textbf{Front-end Developer Intern, PegasusCRM, Atlanta} \hfill 2018/01 -- 2018/04
-\begin{itemize}
-\item Mainly used Laravel, jQuery, Sass/LESS, Vue.  Developed a PDF-generation service (Node.js) based on Puppeteer.
-\end{itemize}
-
 
 \section*{Education}
-\textbf{B.S. Computer Science, Georgia Institute of Technology, Atlanta} \hfill 2015/08 -- 2019/12
+
+\textbf{University of Illinois Urbana-Champaign}, Champaign, IL \hfill 2022/08 - Present\\
+ M.C.S. in Computer Science \\
+ 
+\textbf{Georgia Institute of Technology}, Atlanta, GA  \hfill 2015/08 -- 2019/12\\
+B.S. in Computer Science, Minor in Physics, GPA: 3.97/4.0
+
+\section*{Projects: //github.com/GalMunGral}
+
+\textbf{/telescope:} SOCKS-based Split Proxy [C, Python]   \hfill 2021/04
 \begin{itemize}
-\item  Cumulative GPA: 3.97/4.0, Major GPA: 4.0/4.0. Minor in Physics (\texttt{//galmungral.github.io})
-\end{itemize} 
-
-\section*{\texttt{\large github.com/GalMunGral}}
-
-\textbf{\texttt{/telescope}:  (C) A SOCKS-based Split Proxy (Anti-Censorship Tool)}   \hfill 2021/04
-
-\vspace{0.5em}
-\textbf{\texttt{/turing-machine}:  (Haskell) Implementation of UTM based on Turing's Paper} \hfill 2021/12
-
-\vspace{0.5em}
-\textbf{\texttt{/hanbun-lang:} (PureScript) An Object-Oriented, Stack-Based Esoteric Programming Language} \hfill 2021/05
-\begin{itemize}
-\item Demo: \texttt{//galmungral.github.io/hanbun-lang}
+\item A stable anti-censorship tool for bypassing the Great Firewall, implemented using libuv.
 \end{itemize}
 
 \vspace{0.5em}
-\textbf{\texttt{/replay:} (TypeScript/JavaScript) Front-end Framework and Build Tool} \hfill 2020/05 -- 2020/06
+\textbf{/michelangelo:} Web UI without DOM and CSSOM [TypeScript] \hfill 2022/05
 \begin{itemize}
-\item Features include a DSL (requires Babel), in-place diffing, non-blocking rendering, hydration and dependency tracking.
-\item Provides a ESM-mode dev server and webpack-style bundling with code-splitting and support for dynamic imports.
+\item A low-level UI framework that implements layout, drawing and event handling on canvas.
+\item \underline{//galmungral.github.io/michelangelo}
 \end{itemize}
 
 \vspace{0.5em}
-\textbf{\texttt{/react-teletype}  (TypeScript) React Renderer Shared across Tabs} \hfill 2021/05 
+\textbf{/replay:}  Front-end Framework and Bundler [TypeScript, JavaScript] \hfill 2020/05
 \begin{itemize}
-\item Designed for running apps in shared worker to avoid unnecessary initialization for each new tab.
+\item React-like famework with in-place diffing, non-blocking rendering, hydration and dependency tracking.
+\item Webpack-style bundler with support for dynamic imports, code splitting and ESM-mode dev server.
 \end{itemize}
 
 \vspace{0.5em}
-\textbf{\texttt{/colosseum}:  (TypeScript) HTML5 Encrypted Streaming Media Player}   \hfill 2021/10
+\textbf{/react-teletype} Interprocess React Renderer [TypeScript] \hfill 2021/05 
 \begin{itemize}
-\item Built on the Media Source API, DASH protocol and CryptoJS. Protects video from being downloaded.
+\item React renderer for running apps on the server side or in a shared worker to skip reinitialization.
 \end{itemize}
 
 \vspace{0.5em}
-\textbf{\texttt{/layout-sandbox:} (TypeScript) WYSIWYG Drag-and-Drop Layout Builder} \hfill 2021/11
+\textbf{/hanbun-lang:}  An Esoteric Programming Language [PureScript, TypeScript] \hfill 2021/05
+\begin{itemize}
+\item An object-oriented stack-based language, with syntax based on Classical Chinese.
+\item \underline{//galmungral.github.io/hanbun-lang}
+\end{itemize}
 
 \vspace{0.5em}
-\textbf{\texttt{/web-repl:} (JavaScript) Web-based Python REPL and Chat Room}  \hfill 2018/05 
-
-
-\vspace{2em}
-For more, visit GitHub: 
+\textbf{/sketchpad:} A Simple Compiler for a High-Level Language [JavaScript] \hfill 2022/04
 \begin{itemize}
-\item \texttt{/preludes}: \textit{Experiments related to formal languages, network protocols and front-end frameworks.}
-\item \texttt{/etudes}: \textit{Includes full-stack web, mobile \textup(native\textup), desktop \textup(Electron\textup) applications.}
-\item \texttt{/bagatelles}: \textit{Includes webpack plugins for generating atomic CSS, detecting unused files, analyzing coupling, etc.}
+\item A language with Lisp syntax, C-like semantics and a compiler for a hypothetical architecture.
+\item //galmungral.github.io/sketchpad
 \end{itemize}
+
+\vspace{0.5em}
+\textbf{/turing-machine}:  Implementation of Turing's Universal Machine [Haskell, Common Lisp] \hfill 2021/12
+
+% Angular, Redux Saga, SWR, ECharts, Linaria, Tailwind, Sass/LESS, Vite, webpack, Rollup, Parcel, GitLab, Docker, ArgoCD, TypeDoc, Confluence, MySQL, MongoDB, ajv, Express, Node.js, Puppeteer
 
 \end{document}
 
